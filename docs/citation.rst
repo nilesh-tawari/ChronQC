@@ -1,7 +1,7 @@
 Citation
 ========
 
-An Open-source Quality Control Monitoring System for Clinical NGS (Manuscript under preperation)
+An Open-source Quality Control Monitoring System for Clinical NGS (Manuscript under construction)
 
 License
 =======

@@ -52,7 +52,7 @@ For complete command line reference see the `documentation. <http://chronqc.read
 
 For details of chart types see the `documentation. <http://chronqc.readthedocs.io/en/latest/>`__
 
-Requirnment
+Requirement
 ===========
 Generating database and creating interactive charts is performed with code written for Python.
 
@@ -93,7 +93,7 @@ If you would like the development version instead, the command is::
 Citation
 ========
 
-An Open-source Quality Control Monitoring System for Clinical NGS (Manuscript under preperation)
+An Open-source Quality Control Monitoring System for Clinical NGS (Manuscript under construction)
 
 License
 =======
