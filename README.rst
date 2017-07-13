@@ -1,6 +1,9 @@
 .. image:: https://github.com/nilesh-tawari/ChronQC/blob/master/docs/_static/ChronQC_logo.png
 	:target: https://github.com/nilesh-tawari/ChronQC
 
+.. image:: https://img.shields.io/pypi/v/chronqc.svg
+        :target: https://pypi.python.org/pypi/chronqc
+
 .. image:: https://readthedocs.org/projects/chronqc/badge/?version=latest
         :target: http://chronqc.readthedocs.io/en/latest/?badge=latest
         
@@ -23,12 +26,9 @@ Features
 
 ChronQC is an open-source, interactive, record-keeping QC system. ChronQC captures QC data from `MultiQC <https://github.com/ewels/MultiQC>`__. output and stores the metrics in a database. ChronQC then automatically generates interactive time-series plots for various metrics, allowing comparison of the current run to historical runs. In QC meetings, users can record their notes and corrective actions directly onto the graphs for long-term record-keeping.
 
-..
-	Live report (without annotation feature):
-	=============
-	
-	`https://nilesh-tawari.github.io/chronqc <https://nilesh-tawari.github.io/chronqc>`_
-..
+Live report:
+=============
+`https://nilesh-tawari.github.io/chronqc <https://nilesh-tawari.github.io/chronqc>`_
 
 
 ChronQC workflow
@@ -63,19 +63,19 @@ You can install ChronQC from PyPI using pip as follows::
 
 	pip install chronqc
 
+..
+	Alternatively, you can install using Conda from the Bioconda channel::
 
-Alternatively, you can install using Conda from the Bioconda channel::
+		INSTALL_PATH=~/anaconda
+		wget http://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
+		# or wget http://repo.continuum.io/miniconda/Miniconda2-latest-MacOSX-x86_64.sh
+		bash Miniconda2-latest* -fbp $INSTALL_PATH
+		PATH=$INSTALL_PATH/bin:$PATH
 
-	INSTALL_PATH=~/anaconda
-	wget http://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
-	# or wget http://repo.continuum.io/miniconda/Miniconda2-latest-MacOSX-x86_64.sh
-	bash Miniconda2-latest* -fbp $INSTALL_PATH
-	PATH=$INSTALL_PATH/bin:$PATH
-
-	conda update -y conda
-	conda config --add channels bioconda
-	conda install -c bioconda chronqc
-
+		conda update -y conda
+		conda config --add channels bioconda
+		conda install -c bioconda chronqc
+..
 
 Alternatively, you can install from GitHub::
 

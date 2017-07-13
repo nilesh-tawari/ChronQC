@@ -3,11 +3,9 @@
 
 .. image:: _static/ChronQC_logo.png
         :target: https://github.com/nilesh-tawari/ChronQC
-.. image:: https://anaconda.org/bioconda/peddy/badges/installer/conda.svg
-        :target: https://conda.anaconda.org/bioconda
 
-.. image:: https://img.shields.io/pypi/v/ChronQC.svg
-        :target: https://pypi.python.org/pypi/ChronQC
+ .. image:: https://img.shields.io/pypi/v/chronqc.svg
+        :target: https://pypi.python.org/pypi/chronqc
 
 .. image:: https://readthedocs.org/projects/chronqc/badge/?version=latest
         :target: http://chronqc.readthedocs.io/en/latest/?badge=latest
