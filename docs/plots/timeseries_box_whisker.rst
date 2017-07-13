@@ -16,7 +16,7 @@ Chart Properties
 +------------------+-----------------------------------+-----------------------------------------------------------------------------------------------+
 | Option           | Type                              | Use                                                                                           |
 +==================+===================================+===============================================================================================+
-| Chart_title      | String (optional)                 | This is used to creates the tile of the chart.                                                |
+| Chart_title      | String (Optional)                 | This is used to creates the tile of the chart.                                                |
 |                  |                                   | Default is  "{y_label} Monthly Box-and-Whisker Plot".                                         |
 |                  |                                   | E.g. "Bcftools Stats Number Of Snps Monthly Box-and-Whisker Plot".                            |
 +------------------+-----------------------------------+-----------------------------------------------------------------------------------------------+

@@ -18,7 +18,7 @@ Chart Properties
 +------------------+-----------------------------------+-----------------------------------------------------------------------------------------------+
 | Option           | Type                              | Use                                                                                           |
 +==================+===================================+===============================================================================================+
-| Chart_title      | String (optional)                 | This is used to creates the tile of the chart.                                                |
+| Chart_title      | String (Optional)                 | This is used to creates the tile of the chart.                                                |
 |                  |                                   | Default is  "{y_label} (Mean per run)".                                                       |
 |                  |                                   | E.g. "Qualimap Median Coverage (Mean per run)".                                               |
 +------------------+-----------------------------------+-----------------------------------------------------------------------------------------------+
@@ -36,7 +36,7 @@ Chart Properties
 | upper_threshold  | Integer (Optional)                | This is used to create upper threshold line on the chart.                                     |
 |                  |                                   | E.g.300.                                                                                      |
 +------------------+-----------------------------------+-----------------------------------------------------------------------------------------------+
-| per_sample       | Boolean (Optional)                | Plot per sample graph. Default is “False”, graphs are plotted as per run.                     |
+| per_sample       | Boolean (Optional)                | Plot per sample graph. Default is “False”.                     |
 |                  |                                   | If set to “True” per sample graph will be plotted.                                            |
 +------------------+-----------------------------------+-----------------------------------------------------------------------------------------------+
 

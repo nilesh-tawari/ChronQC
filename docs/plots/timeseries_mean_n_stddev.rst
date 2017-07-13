@@ -39,7 +39,7 @@ Chart Properties
 |                  |                                   | Default is "Mean {y_value} per run".                                                          |
 |                  |                                   | E.g. "FastQC Percent Duplicates".                                                             |
 +------------------+-----------------------------------+-----------------------------------------------------------------------------------------------+
-| per_sample       | Boolean (Optional)                | Plot per sample graph. Default is “False”, graphs are plotted as per run.                     |
+| per_sample       | Boolean (Optional)                | Plot per sample graph. Default is “False”.                     |
 |                  |                                   | If set to “True” per sample graph will be plotted.                                            |
 +------------------+-----------------------------------+-----------------------------------------------------------------------------------------------+
 

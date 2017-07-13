@@ -28,8 +28,7 @@ setup(
     name='chronqc',
     version=versioneer.get_version(),
     cmdclass=versioneer.get_cmdclass(),
-    description="An Open-source Quality Control Monitoring System for \
-    Clinical NGS",
+    description="An Open-source Quality Control Monitoring System for Clinical NGS",
     long_description=readme + '\n\n' + history,
     author="Nilesh R. Tawari",
     author_email='tawari.nilesh@gmail.com',

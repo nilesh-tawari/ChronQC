@@ -17,7 +17,7 @@ Chart Properties
 +------------------+-----------------------------------+-----------------------------------------------------------------------------------------------+
 | Option           | Type                              | Use                                                                                           |
 +==================+===================================+===============================================================================================+
-| Chart_title      | String (optional)                 | This is used to creates the tile of the chart.                                                |
+| Chart_title      | String (Optional)                 | This is used to creates the tile of the chart.                                                |
 |                  |                                   | Default is  "% Samples per run with {y_label} ≥ {threshold}".                                 |
 |                  |                                   | E.g. "% Samples per run with Qualimap Median Coverage ≥ 100".                                 |
 +------------------+-----------------------------------+-----------------------------------------------------------------------------------------------+
