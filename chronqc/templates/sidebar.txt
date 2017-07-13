@@ -1,0 +1,3 @@
+			<li class="nav-item">
+				<a href="#$chart_id">$title</a>
+			</li>

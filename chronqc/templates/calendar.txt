@@ -1,0 +1,1 @@
+			Calendar.setup({dateField:"$fromdate",triggerElement : "$fromdate"}); Calendar.setup({dateField:"$todate",triggerElement : "$todate"});

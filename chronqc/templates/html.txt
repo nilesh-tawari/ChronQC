@@ -1,0 +1,14 @@
+
+			<h2 id="$chart_id"></h2>
+			<div class="bigcontainer">
+			<div class="smallcontainer">
+			<div id="$divname" class = "chart"></div>
+			<div class="interaction"><br/><br/><b> Highlight Date Range:</b> 
+			<input readonly id="$fromdate" placeholder="from" size="10"/><b>:</b><input readonly id="$todate" placeholder="until" size="10"/>
+			<input name="buttonExecute" onclick="Highlight(document.getElementById('$fromdate').value,document.getElementById('$todate').value,$graphvar)" type="button" value="submit" />
+			<button id = "$restorebutton" class="buttons">All historical data</button>
+			<button id = "$yearbutton" class="buttons">1 year data</button>
+			</div></div><div id="$labeldiv" class= "labels" ></div></div>
+
+
+			

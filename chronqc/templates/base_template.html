@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<script type='text/javascript' src='http://code.jquery.com/jquery-1.4.4rc2.js'></script>
+	<script src="http://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/dygraph/2.0.0/dygraph.css" rel="stylesheet"/>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dygraph/2.0.0/dygraph.js"></script>
+	<script src="http://dygraphs.com/src/extras/synchronizer.js"></script>
+	<script src="http://dygraphs.com/tests/interaction.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/prototype/1.7.2.0/prototype.js"></script>
+    <script src="http://calendarview.org/releases/1.2/javascripts/calendarview.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://calendarview.org/releases/1.2/stylesheets/calendarview.css"/>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script type="text/javascript" src="http://momentjs.com/downloads/moment.min.js"></script>
+
+	<style type="text/css">
+
+		.header{
+			background-color: #fbd043;
+			border:0;
+			margin:0;
+			padding: 0.5em;
+			font-weight: bold;
+			position:fixed;
+			width:100%;
+			top:0;
+			left:0;
+			z-index:2;
+			height:4em;
+			overflow:hidden;
+		}
+
+		#header_title {
+			display:inline-block;
+			font-size: 200%;
+			float:left;
+			margin-left:1em;
+		}
+
+		#report{
+			position:absolute;
+			bottom:0;
+			right:1em;
+			font-size: 80%;
+		}
+
+
+
+		.nav-item{
+			width:100%;;
+			color: #ffffff !important;
+		}
+
+		.nav-item.active a{
+			background-color: #3cba54;
+			color: #ffffff !important;
+		}
+
+		.summary   			{
+			background-color: #fbd043;
+			max-height: 100%;
+			left:0px;
+			width: 17em;
+			position:fixed;
+			bottom: 0;
+			top:4em
+
+		}
+
+		ul {
+			margin: 0;
+			padding: 0;
+			background-color: #f1f1f1;
+		}
+
+		li a {
+			display: block;
+			color: #000;
+			font-size: 9pt;
+			text-decoration: none;
+			border-bottom: 1px solid #ccc;
+		}
+
+		li a:hover:not(.active) {
+			background-color: #bfbbbb;
+			color: white;
+		}
+
+		::-webkit-scrollbar {
+			width: 10px;
+			height: 10px;
+		}
+		::-webkit-scrollbar-track {
+			background: #D8D8D8;
+			border-left: 1px solid #D8D8D8;
+			border-right: 1px solid #D8D8D8;
+		}
+		::-webkit-scrollbar-thumb {
+			background: #f1f1f1;
+			border-left: 1.25px solid #D8D8D8;
+			border-right: 1.25px solid #D8D8D8;
+		}
+		::-webkit-scrollbar-thumb:hover {
+			-moz-box-shadow: inset 1px 1px 2px rgba(0,0,0,0.1);
+			-webkit-box-shadow: inset 1px 1px 2px rgba(0,0,0,0.1);
+			box-shadow: inset 1px 1px 2px rgba(0,0,0,0.1);
+		}
+		::-webkit-scrollbar-thumb:active {
+			background: #FFFFFF;
+			-moz-box-shadow: inset 1px 1px 10px rgba(0,0,0,0.4);
+			-webkit-box-shadow: inset 1px 1px 10px rgba(0,0,0,0.4);
+			box-shadow: inset 1px 1px 10px rgba(0,0,0,0.2);
+		}
+
+		.annbuttons 		{
+			margin-left:50px;
+			margin-top:50px;
+			margin-left:350px;
+			margin-bottom:75px;
+		}
+
+		.interaction		{
+			margin-left:2em;
+			margin-top:4em;
+			color:black;
+			clear:left;
+			font-size:80%;
+			overflow: auto
+		}
+
+		.bigcontainer      	{
+			width:90%;
+			height:500px;
+			margin-top:100px;
+			margin-left:19em;
+			margin-right:1em;
+			border-radius:1em;
+			overflow: visible;
+		}
+
+		.exann      	{
+			width:90%;
+			margin-top:100px;
+			margin-left:25em;
+			margin-right:3em;
+			overflow: visible;
+		}
+
+		.smallcontainer		{
+			width:65%;
+			height:100%;
+			float:left;
+			border-radius:1em;
+			padding: 1em;
+			border:2px solid;
+			overflow: auto;
+		}
+
+		.chart 				{
+			width:94%;
+			height:75%;
+			float:left;
+			margin-top:30px;
+			padding: 1em;
+			border-radius:2em;
+			zoom:100%
+		}
+
+		.buttons			{
+			float:right;
+			margin-right:1em;
+			color:#000000
+		}
+
+		.labels 			{
+			width:35%;
+			height:100%;
+			float:right;
+			right:0;
+			margin-top: 5em;
+			padding: 1em;
+			text-align:left;
+			font-size:90%;
+			-webkit-transition: width 3s;
+			transition: width 3s;
+		}
+
+		#titles {
+			width: 220px;
+			height:85%;
+			margin-left:1em;
+			overflow-y: auto;
+		}
+
+		.dygraph-label.dygraph-title{
+			margin-top:-2em;
+
+		}
+
+		@media only screen and (max-width: 1026px) {
+			.summary{
+				display : none;
+			}
+
+			#main{
+				margin-left: -18em;
+				right:2em;
+			}
+
+			.bigcontainer{
+				width:100%;
+				zoom: 100%;
+			}
+
+			#mySidebar{
+				display: none;
+			}
+			.labels 			{
+				font-size:80%;
+				margin-top: 1em;
+			}
+			.interaction		{
+				margin-left:0;
+				margin-right:0;
+				margin-top:4em;
+				color:black;
+				clear:left;
+				font-size:70%;
+				overflow: auto
+			}
+		}
+
+		div.calendar.popup  {
+			margin-left: 30px !important;
+			margin-top: 10px; !important
+		}
+
+		#main{
+			width: 90%;
+			right:2em;
+		}
+
+		html, body {
+			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+			height: 100%;
+			position: relative
+		}
+
+
+	</style>
+</head>
+
+
+<body data-spy="scroll" data-target="#navbar" data-offset="100">
+
+	<div class="header">
+		<div id="header_title"><button class="w3-button  w3-xlarge" onclick="w3_open()">&#9776;</button><a href="https://github.com/nilesh-tawari/ChronQC" target="_blank">ChronQC</a>  $panel Plots</div>
+		<div id="report">Report generated on $datetime</div>
+	</div>
+
+	<div class="w3-sidebar w3-bar-block "  id="mySidebar">
+	<div id="mySidebar-2"  class="summary" class="collapse" ><button class="w3-bar-item w3-button w3-large" onclick="w3_close()"><h2 style="font-size: 150%; ">&#171; Plots</h2></button>
+		<div id="titles">
+		<nav id="navbar" class="navbar">
+			<ul class="nav" role="tablist">
+
+				$sidebartemplates
+
+			</ul>
+		</nav>
+		</div>
+		</div>
+
+	</div>
+
+
+	<div id="main" >
+
+		<div class="exann">
+		<b>Annotate by Date:</b>
+		<input readonly id="calendarButton" placeholder="YYYY-MM-DD" />
+		<input name="buttonExecute" onclick="makeDateQuery(document.getElementById('calendarButton').value)" type="button" value="submit" />
+		<br/><br/><input type=checkbox checked id='chk-zoom' onChange='syncchk()'><label for='chk-zoom'>Synchronize  Zoom</label>
+		</div>
+
+
+
+$htmltemplates
+
+
+
+		</div>
+
+		<script type = "text/javascript">
+
+
+	function w3_open() {
+		document.getElementById("main").style.marginLeft = "1em";
+		document.getElementById("mySidebar").style.display = "block";
+		document.getElementById("mySidebar").style.width = "0";
+		document.getElementById("mySidebar-2").style.display = "block";
+
+		var elements =document.getElementsByClassName("bigcontainer");
+		for (var i = 0; i < elements.length; i++) {
+			elements[i].style.width="90%";
+			elements[i].style.zoom="100%";
+		}
+		for (var i = 0; i < gs.length; i++) {
+			gs[i].resize()
+		}
+	}
+
+	function w3_close() {
+		document.getElementById("mySidebar").style.display = "none";
+		document.getElementById("main").style.marginLeft = "-18em";
+		var elements =document.getElementsByClassName("bigcontainer");
+		for (var i = 0; i < elements.length; i++) {
+			elements[i].style.width="100%";
+			elements[i].style.zoom="100%";
+		}
+		//var elements =document.getElementsByClassName("chart");
+		//for (var i = 0; i < elements.length; i++) {
+		   // elements[i].style.top=0;
+			//elements[i].style.right=0
+
+		//}
+		for (var i = 0; i < gs.length; i++) {
+			gs[i].resize()
+		}
+	}
+////////////////////////////////////////////////////////////////////////////////////////
+
+	var $j = jQuery.noConflict();
+
+////////////////////////////////////////////////////////////////////////////////////////
+		var panelname = "$panel";
+		var obj = [];
+		var runjson = '';
+		var runrequest= $j.ajax({ type: "GET",
+			url: "http://localhost:8000/runannotation",
+			async: false,
+			success : function(text){
+				runjson = text;
+			}
+		});
+		if(runjson.length==0){var obj = '';}
+		else {
+			var obj12 = JSON.parse(runjson);
+			for(i = 0; i < obj12.length; i++){
+				if (obj12[i].Panel==panelname){
+					obj.push(obj12[i]);
+				}
+			}
+		}
+
+		var datejson = '';
+		var dateobj = [];
+		var daterequest= $j.ajax({ type: "GET",
+			url: "http://localhost:8000/dateannotation",
+			async: false,
+			success : function(text){
+				datejson = text;
+			}
+		});
+		if(datejson.length==0){var dateobj = '' }
+		else {
+			var dateobj12 = JSON.parse(datejson);
+			for(i = 0; i < dateobj12.length; i++){
+				if (dateobj12[i].Panel==panelname){
+					dateobj12[i].Notes = dateobj12[i].Notes.replace(/hashmark/g, '#');
+					dateobj12[i].Notes = dateobj12[i].Notes.replace(/questmark/g, '?');
+					dateobj12[i].Notes = dateobj12[i].Notes.replace(/backslash/g, '/');
+					dateobj.push(dateobj12[i]);
+				}
+			}
+		}
+
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+	function makeQuery(Runname, date){
+		if (runrequest.status<600 && runrequest.status >=400 || runrequest.status ==0){
+			alert("To start annotation, follow the steps below: \n\nOn Windows: Click Start > type 'cmd' > press enter > type 'chronqc annotation' > press enter. \n\nOn Linux/Mac: Open terminal > type 'chronqc annotation' > press enter.\n\nThen refresh this page. ");
+		}
+		else{
+			var annotation = prompt("RunName: " + run  , "Annotation");
+			if (annotation==null || annotation == "Annotation"){}
+			else{
+				var str = annotation;
+				var str = str.replace(/[?]/g, '&quest;');
+				var str = str.replace(/[#]/g, '&num;');
+				var annotation = str.replace(/\//g, '&frasl;');
+				$j.get("http://localhost:8000/dataQuery/"+ Runname+ "/" + panelname +"/" + annotation, function(result){})
+				alert("Annotation Added!")
+				window.location.reload(true);
+			}
+		}
+	}
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+	function makeDateQuery(Date){
+		if (daterequest.status >=400 && daterequest.status<600 || daterequest.status ==0){
+			alert("To annotate please follow the following steps: \n\n Windows: \n 1) Open Command Prompt using Start Menu \n 2) Type in 'chronqc_annotation' \n 3) Press 'Enter' \n\n Linux/Mac \n 1) Open Terminal from Launchpad \n 2) Type in 'chronqc_annotation' \n 3) Press 'Enter'");
+		}
+		else{
+			var Notes = prompt("Date: " + Date , "Annotation (not more than 10 characters)");
+			if( Date==null || Notes == null || Notes == "Annotation (not more than 10 characters)"|| Notes == "Annotation"){  }
+			else if(Notes.length>10){alert("Annotation length must not exceed 10 characters")}
+			else{
+				var str = Notes;
+				var str = str.replace(/[?]/g, 'questmark');
+				var str = str.replace(/[#]/g, 'hashmark');
+				var Notes = str.replace(/\//g, 'backslash');
+				$j.get("http://localhost:8000/datedataQuery/"+ Date + "/" + panelname + "/" + Notes, function(result){})
+				alert("Annotation Added!")
+				window.location.reload(true);
+			}
+		}
+	}
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+	window.onload = function( ) {
+		Calendar.setup({dateField:'calendarButton',triggerElement : 'calendarButton'});
+$calendartemplates
+	}
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+    function candlePlotter(e) {
+
+		if (e.seriesIndex !== 0) return;
+		var BAR_WIDTH = 60;
+        var prices = [];
+        var price;
+        var sets = e.allSeriesPoints;
+
+        for (var p = 0 ; p < sets[0].length; p++) {
+			price = {
+				open : sets[0][p].yval,
+				close : sets[1][p].yval,
+				high : sets[2][p].yval,
+				low : sets[3][p].yval,
+				middle: sets[4][p].yval,
+				out: sets[5][p].yval,
+				openY : sets[0][p].y,
+				closeY : sets[1][p].y,
+				highY : sets[2][p].y,
+				lowY : sets[3][p].y,
+				middleY : sets[4][p].y,
+				outY : sets[5][p].y
+
+			};
+			prices.push(price);
+        }
+
+        var area = e.plotArea;
+        var ctx = e.drawingContext;
+        ctx.strokeStyle = '#202020';
+		ctx.fillStyle="#ffffff";
+        ctx.lineWidth = 0.8;
+        for (p = 0 ; p < prices.length; p++) {
+			ctx.beginPath();
+
+			price = prices[p];
+			var topY = area.h * price.highY + area.y;
+			var midY = area.h * price.middleY + area.y;
+			var outlierY = area.h * price.outY + area.y;
+			var bottomY = area.h * price.lowY + area.y;
+			var centerX = area.x + sets[0][p].x * area.w;
+			var bodyY;
+
+			if (price.open > price.close) {
+				ctx.fillStyle ='#f2a104';
+				ctx.strokeStyle = "#bb1924";
+				bodyY = area.h * price.openY + area.y;
+			}
+			else {
+				ctx.fillStyle = '#ffd9b3';
+				ctx.strokeStyle = "#ffa64d";
+				ctx.lineWidth=1.5;
+				bodyY = area.h * price.closeY  + area.y;
+			}
+			var bodyHeight = area.h * Math.abs(price.openY - price.closeY);
+			ctx.fillRect(centerX - BAR_WIDTH / 2, bodyY, BAR_WIDTH,  bodyHeight);
+			ctx.strokeRect(centerX - BAR_WIDTH / 2, bodyY, BAR_WIDTH,  bodyHeight);
+			ctx.moveTo(centerX, topY);
+			ctx.lineTo(centerX, bottomY);
+			ctx.moveTo(centerX - BAR_WIDTH / 2, midY);
+			ctx.lineTo(centerX + BAR_WIDTH / 2, midY);
+			ctx.closePath();
+			ctx.stroke();
+			ctx.fillStyle = "#ff6666";
+			ctx.arc(centerX, outlierY, 3, 0, Math.PI * 2);
+			ctx.fill();
+        }
+
+    }
+
+////////////////////////////////////////////////////////////////////////////
+
+	function Highlight(highlight_start,highlight_end,a){
+
+			area = a.plotter_.area
+			ctx = a.hidden_ctx_
+
+			var start = new Date(highlight_start);
+			var end = new Date(highlight_end);
+
+			if(start>end){
+				alert("Wrong Date ('Until' date is later than 'From' date)")
+				return
+			}
+			else if(moment(start).format("DD/MM/YYYY") == moment(end).format("DD/MM/YYYY")){
+				alert("Wrong Date ('Until' date is equal to 'From' date)")
+				return
+			}
+			else{
+				var left = a.toDomXCoord(start);
+				var right = a.toDomXCoord(end);
+
+				ctx.beginPath();
+				ctx.fillStyle = "rgba(255, 255, 102, 0.5)";
+				ctx.fillRect(left, area.y, right - left, area.h);
+			}
+	};
+
+////////////////////////////////////////////////////////////////////////
+/*
+	function copyToClipboard(textToCopy){
+		$j("body")
+			.append($j('<input type="text" name="fname" class="textToCopyInput"/>' )
+			.val(textToCopy))
+			.find(".textToCopyInput")
+			.select();
+		if (textToCopy != null){
+			var successful = document.execCommand('copy');
+			var msg = successful ? 'successful' : 'unsuccessful';
+
+		} else {
+			return ;
+		}
+		$j(".textToCopyInput").remove();
+	}
+*/
+/////////////////////////////////////////////////////////////////////////////
+
+	function syncchk() {
+        var zoom = document.getElementById('chk-zoom').checked;
+
+        sync.detach();
+        sync = Dygraph.synchronize(gs, {
+          zoom: zoom,
+          selection: true,
+          range: false
+        });
+    }
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+	function legendFormatter(data) {
+		if (data.x == null) {
+			return ' ';
+		}
+		var html =  data.xHTML;
+		//console.log(data.series)
+		return html;
+	}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+	var gs = [];
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+	$javascripttemplate
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+	if (gs.length>1){
+	var sync = Dygraph.synchronize(gs, {
+          range: false
+    });}
+	else{}
+
+////////////////////////////////////////////////////////////////////////
+
+	gs[0].updateOptions({
+		dateWindow: [ Date.parse('$startdate'),
+					  Date.parse('$enddate') ],
+	});
+
+
+	</script>
+</body>
+</html>
+
+

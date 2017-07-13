@@ -1,0 +1,125 @@
+
+	$dataname = $data
+	$runname = $run_name
+	$samplename = $sample_name
+
+
+	for (j = 0; j < $dataname.length; j++){
+		$dataname[j][0] = new Date($dataname[j][0])
+	}
+
+	for (j = 0; j < $runname.length; j++){
+		for (i = 0; i < obj.length; i++){
+			var ann = obj[i]
+			if(ann.Run == $runname[j][0]){
+				$runname[j][1]=ann.Annotation
+			}else{}
+		}
+	}
+
+	$graphvar = new Dygraph(
+    	document.getElementById("$divname"),
+		$dataname,
+		{
+			labels: [ "Date", "Scatter"],
+			drawPoints: true,
+			strokeWidth: 0.0,
+			labelsDiv: document.getElementById("$labeldiv"),
+			labelsSeparateLines: true,
+			showRangeSelector: true,
+			rangeSelectorHeight: 20,
+			includeZero: true,	
+			rangeSelectorPlotFillColor: "rgba(0,0,0,0)",
+			rangeSelectorPlotFillGradientColor: "rgba(0,0,0,0)",
+			rangeSelectorPlotStrokeColor: "rgba(0,0,0,0)", 
+			interactionModel: Dygraph.defaultInteractionModel,
+			highlightSeriesOpts: { highlightCircleSize : 5 },
+			legend: "always",
+			title: '$title',
+			xlabel: 'Date',
+			ylabel: '$ylabel',
+			axisLabelFontSize: 10,
+			titleHeight: 25,
+			xLabelHeight: 15,
+			yLabelWidth: 15,
+			legendFormatter: legendFormatter,
+			axes: {
+				x: {
+					valueFormatter: function (d,opt,se,dy,row,col) {
+						var text = [], 
+						data = $dataname[row][1],
+						run = $runname[row],
+						sample = $samplename[row];
+						
+						text = "<b>Run Name: </b>".fontcolor("#800000") + run[0] 
+								+ "<br/><b>Sample Name (y-value): </b>".fontcolor("#008080") + "<font size='-1.5'>" + sample + "</font>" 
+								+ "<br><b>Date:</b> ".fontcolor("#800080") + moment(d).format("DD/MM/YYYY") 
+								+ "<br/><b>$ylabel: </b>".fontcolor("#000080") + data
+						
+						
+						if (run[1].length == 0){return text}
+						else if (run[1].length != 0){
+							note = "<br/><b>Notes: </b><br/>" + run[1]
+							text = text + note.fontcolor("red");
+							return text
+						}else{console.log("Error in labels")}
+					},					
+				},
+			},
+			series: {
+				"Scatter" : {
+					strokeWidth: 0,
+					pointSize: 3,
+					color: "#0080ff"
+				}
+			},
+			underlayCallback: function(canvas, area, g) {		
+				
+				ctx = g.hidden_ctx_;
+				ctx.strokeStyle = "#dd4b39";
+				
+				for (i = 0; i < $dataname.length; i++) { 
+					point = $dataname[i][1],
+					note = $runname[i][1],
+					date = $dataname[i][0];
+					
+					if ($dataname[i][0] == null){}
+					else if(note.length != 0){
+						mutated = g.toDomCoords(date, point)
+						ctx.beginPath();
+						ctx.arc(mutated[0], mutated[1],5,0,Math.PI*2,true);
+						ctx.closePath();
+						ctx.stroke();
+					}
+				}
+				
+				ctx.fillStyle = "#0080ff";
+				ctx.strokeStyle = "#0080ff";
+					var [bottom,top] = g.yAxisRange();
+					for(i = 0; i < dateobj.length; i++) {
+						date = dateobj[i];
+						position = g.toDomCoords(date.Annotated_date,bottom);
+						dateobj[i].key3 = position;
+						canvas.fillText(dateobj[i].Notes,dateobj[i].key3[0]+2,dateobj[i].key3[1]-15);
+						canvas.strokeRect(dateobj[i].key3[0],dateobj[i].key3[1]-25,dateobj[i].Notes.length*7,15);
+						canvas.beginPath();
+						canvas.moveTo(dateobj[i].key3[0],dateobj[i].key3[1]);
+						canvas.lineTo(dateobj[i].key3[0],dateobj[i].key3[1]-10);
+						canvas.closePath();
+						canvas.stroke();
+					}
+			},
+			pointClickCallback: function(e, point) {
+				run = $runname[point.idx][0];
+				date = $dataname[point.idx][0];
+				date =  moment(date).format("DD-MM-YYYY");
+				//copyToClipboard(run);
+				makeQuery(run,date);
+			},
+		}
+	);
+
+	document.getElementById("$restorebutton").onclick 	= function() { restorePositioning($graphvar); };
+	document.getElementById("$yearbutton").onclick 	= 	function() 	{$graphvar.updateOptions({dateWindow: [Date.parse('$startdate'),Date.parse('$enddate')]});};
+	gs.push($graphvar);
+	

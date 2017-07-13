@@ -1,0 +1,57 @@
+[
+ {
+    "chart_type": "time_series_with_mean_and_stdev",
+    "chart_properties": {
+      "y_value": "FastQC_percent_duplicates",
+      "window": "365D"
+    }
+ },
+ {
+    "chart_type": "time_series_with_mean_and_stdev",
+    "chart_properties": {
+      "y_value": "FastQC_percent_gc"
+    }
+ },
+ {
+    "chart_type": "time_series_with_mean_and_stdev",
+    "chart_properties": {
+      "y_value": "FastQC_total_sequences"
+    }
+ },
+ {
+    "chart_type": "time_series_with_box_whisker_plot",
+    "chart_properties": {
+      "y_value": "Bcftools_Stats_number_of_SNPs"
+    }
+ },
+ {
+    "chart_type": "time_series_with_box_whisker_plot",
+    "chart_properties": {
+      "y_value": "Bcftools_Stats_number_of_indels"
+    }
+ },
+ {
+    "chart_type": "time_series_with_absolute_threshold",
+    "chart_properties": {
+      "y_value": "Bcftools_Stats_tstv",
+       "lower_threshold": 1.7,
+       "upper_threshold": 2.3,
+       "per_sample" : "True"
+    }
+ },
+ {
+    "chart_type": "time_series_with_absolute_threshold",
+    "chart_properties": {
+      "y_value": "QualiMap_median_coverage",
+      "lower_threshold": 100,
+      "per_sample" : "True"
+    }
+ },
+ {
+    "chart_type": "time_series_with_percentage_of_samples_above_threshold",
+    "chart_properties": {
+      "y_value": "QualiMap_median_coverage",
+      "threshold": 100
+    }
+ }
+]
