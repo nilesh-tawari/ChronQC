@@ -7,3 +7,4 @@ include chronqc/config/*
 include versioneer.py
 include chronqc/_version.py
 include chronqc/db/*
+include HISTORY.rst
