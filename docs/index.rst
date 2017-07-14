@@ -1,6 +1,6 @@
 .. ChronQC documentation master file, created by
 
-.. image:: https://github.com/nilesh-tawari/ChronQC/blob/master/docs/_static/ChronQC_logo.png
+.. image:: _static/ChronQC_logo.png
 	:target: https://github.com/nilesh-tawari/ChronQC
 
 An Open-source Quality Control Monitoring System for Clinical NGS
