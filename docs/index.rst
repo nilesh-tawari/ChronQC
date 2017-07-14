@@ -1,12 +1,11 @@
 .. ChronQC documentation master file, created by
 
+.. image:: https://github.com/nilesh-tawari/ChronQC/blob/master/docs/_static/ChronQC_logo.png
+	:target: https://github.com/nilesh-tawari/ChronQC
 
-.. image:: _static/ChronQC_logo.png
-        :target: https://github.com/nilesh-tawari/ChronQC
-
- .. image:: https://img.shields.io/pypi/v/chronqc.svg
+.. image:: https://img.shields.io/pypi/v/chronqc.svg
         :target: https://pypi.python.org/pypi/chronqc
-
+        
 .. image:: https://readthedocs.org/projects/chronqc/badge/?version=latest
         :target: http://chronqc.readthedocs.io/en/latest/?badge=latest
 
