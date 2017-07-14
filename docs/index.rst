@@ -3,14 +3,13 @@
 .. image:: https://github.com/nilesh-tawari/ChronQC/blob/master/docs/_static/ChronQC_logo.png
 	:target: https://github.com/nilesh-tawari/ChronQC
 
+An Open-source Quality Control Monitoring System for Clinical NGS
+=================================================================
 .. image:: https://img.shields.io/pypi/v/chronqc.svg
         :target: https://pypi.python.org/pypi/chronqc
         
 .. image:: https://readthedocs.org/projects/chronqc/badge/?version=latest
         :target: http://chronqc.readthedocs.io/en/latest/?badge=latest
-
-An Open-source Quality Control Monitoring System for Clinical NGS
-=================================================================
 
 * Free software: MIT license
 * Documentation: http://chronqc.readthedocs.io/en/latest/.
