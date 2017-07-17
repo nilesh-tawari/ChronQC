@@ -14,5 +14,6 @@ The default database is stored with `chronqc.stats.sqlite` name in `chronqc_db`
 
 `chronqc plot -db chronqc_db/chronqc.stats.sqlite -json sample.json -panel SOMATIC -o .`
 
+The types of created plots and their properties are specified in "sample.json" file. For details on creating the config file visit [documentation] (http://chronqc.readthedocs.io/en/latest/plots/plot_options.html).
 Interactive html report is created in `chronqc_output` under the `.` (current) directory.
 

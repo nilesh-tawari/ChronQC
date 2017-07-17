@@ -55,7 +55,7 @@ Example JSON entry (minimum)::
       },
      ]
 
-Example JSON entry (full)::
+Example JSON entry (full) to plot all samples excluding HCT15 and NTC::
 
      [
       {
