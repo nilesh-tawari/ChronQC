@@ -55,10 +55,10 @@ Example JSON entry (full)::
        "exclude_samples": "HCT15, NTC",
        "chart_type": "time_series_with_percentage_of_samples_above_threshold",
        "chart_properties": {
-        "chart_title": "% Samples per run with Qualimap Median Coverage ≥ 100",
+        "chart_title": "% Samples per run with Qualimap Median Coverage &ge; 100",
         "y_value": "Depth",
         "threshold": 100,
-        "y_label": "Qualimap Median Coverage ≥ 100"
+        "y_label": "Qualimap Median Coverage &ge; 100"
        }
       }
      ]

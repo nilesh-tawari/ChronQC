@@ -39,7 +39,7 @@ Chart Properties
 |                  |                                   | Default is "Mean {y_value} per run".                                                          |
 |                  |                                   | E.g. "FastQC Percent Duplicates".                                                             |
 +------------------+-----------------------------------+-----------------------------------------------------------------------------------------------+
-| per_sample       | Boolean (Optional)                | Plot per sample graph. Default is “False”.                     |
+| per_sample       | Boolean (Optional)                | Plot per sample graph. Default is “False”.                                                    |
 |                  |                                   | If set to “True” per sample graph will be plotted.                                            |
 +------------------+-----------------------------------+-----------------------------------------------------------------------------------------------+
 
@@ -64,7 +64,7 @@ Example JSON entry (full)::
        "exclude_samples": "HCT15, NTC",
        "chart_type": "time_series_with_mean_and_stdev",
        "chart_properties": {
-        "chart_title": "Fastqc Percent Duplicates (Mean per run with past 1 year runs rolling mean and ±2 standard deviation)",
+        "chart_title": "Fastqc Percent Duplicates (Mean per run with past 1 year runs rolling mean and &plusmn standard deviation)",
         "y_value": "FastQC_percent_duplicates",
         "y_label": "FastQC Percent Duplicates",
         "window" : "10"
