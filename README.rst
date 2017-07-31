@@ -1,4 +1,4 @@
-.. image:: https://github.com/nilesh-tawari/test/blob/master/docs/_static/ChronQC_logo.png
+.. image:: https://github.com/nilesh-tawari/ChronQC/blob/master/docs/_static/ChronQC_logo.png
 	:target: https://github.com/nilesh-tawari/ChronQC
 
 .. image:: https://img.shields.io/pypi/v/chronqc.svg
@@ -33,7 +33,7 @@ ChronQC workflow
 ================
 ChronQC has two components: a command line interface compatible with NGS sequencing machines and a graphical user interface compatible with the clinical environment. HTML plots display metrics for each run or sample. Annotations are displayed on the right side of the plot and are stored in the chronqc.annotations.sqlite database for long-term recordkeeping.
 
-.. image::  https://github.com/nilesh-tawari/test/blob/master/docs/_static/ChronQC_workflow.png
+.. image::  https://github.com/nilesh-tawari/ChronQC/blob/master/docs/_static/ChronQC_workflow.png
 	:target: https://github.com/nilesh-tawari/ChronQC
 
 Examples
@@ -100,4 +100,4 @@ ChronQC: A Quality Control Monitoring System for Clinical Next Generation Sequen
 License
 =======
 
-This project is licensed under the MIT License - see the `LICENSE.md <https://github.com/nilesh-tawari/test/blob/master/LICENSE>`_ file for details
+This project is licensed under the MIT License - see the `LICENSE.md <https://github.com/nilesh-tawari/ChronQC/blob/master/LICENSE>`_ file for details
