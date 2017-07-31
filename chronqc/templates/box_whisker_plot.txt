@@ -19,7 +19,7 @@
     	document.getElementById("$divname"),
 		$dataname, 
 		{
-            labels: ["Date","1st Quantile","Q3 Quantile","Upper Whisker", "Lower Whisker", "Median","Scatter"],
+            labels: ["Date","1st Quantile","3rd Quantile","Upper Whisker", "Lower Whisker", "Median","Scatter"],
 			labelsDiv: document.getElementById("$labeldiv"),
 			labelsSeparateLines: true,
 			showRangeSelector: true,
@@ -51,16 +51,16 @@
 						run = $runname[row],
 						sample = $samplename[row];
 						
-						text = "<b>Run Name: </b>".fontcolor("#800000") + run[0]
-								+ "<br/><b>Sample Name: </b>".fontcolor("#008080") + "<font size='-1.5'>" + sample + "</font>"
+						text = "<b>Run ID: </b>".fontcolor("#800000") + run[0]
+								+ "<br/><b>Sample ID: </b>".fontcolor("#008080") + "<font size='-1.5'>" + sample + "</font>"
 								+ "<br><b>Month:</b> ".fontcolor("#800080") + moment(d).format("MMMM") 
-								+ "<br><b>1st Quantile:</b> ".fontcolor("#ffcc00") + data[1] 
-								+ "<br><b>3rd Quantile:</b> ".fontcolor("#617a00") + data[2] 
 								+ "<br><b>Upper Whisker:</b> ".fontcolor("#007a0a") + data[3] 
-								+ "<br><b>Lower Whisker:</b> ".fontcolor("#f442d1") + data[4] 
+								+ "<br><b>3rd Quantile:</b> ".fontcolor("#A3586D") + data[2] 
 								+ "<br><b>Median:</b> ".fontcolor("#7e04a3") + data[5] 
-								+ "<br><b>Outlier:</b> ".fontcolor("#ff6666") + data[6] 
-						
+								+ "<br><b>1st Quantile:</b> ".fontcolor("#4DD8AD") + data[1] 
+								+ "<br><b>Lower Whisker:</b> ".fontcolor("#f442d1") + data[4] 
+								+ "<br><b>Outlier:</b> ".fontcolor("#0080ff") + data[6] 
+
 					
 						if (run[1].length == 0){return text}
 						else if (run[1].length != 0){
@@ -75,10 +75,10 @@
 			},
 			series: {
 				"1st Quantile" : {
-					color: "#ffcc00"
+					color: "#4DD8AD"
 				}, 
 				"3rd Quantile" : {
-					color: "#617a00"
+					color: "#A3586D"
 				}, 
 				"Upper Whisker" : {
 					color: "#007a0a"
@@ -91,10 +91,11 @@
 				}, 
 				"Scatter" : {
 					drawPoints: true,
-					pointSize: 5,
-					color: "#ff6666"
+					pointSize: 3,
+					color: "#0080ff",
+					plotter: Dygraph.Plotters.linePlotter,
+					strokeWidth: 0
 				}
-				
 			},	
 			underlayCallback: function(canvas, area, g) {		
 				

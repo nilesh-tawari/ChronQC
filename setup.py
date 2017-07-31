@@ -5,19 +5,18 @@
 from codecs import open
 from os import path
 from setuptools import setup, find_packages
-
 import versioneer
 
 here = path.abspath(path.dirname(__file__))
 
-with open(path.join(here, 'README.rst'), encoding='utf-8') as readme_file:
+with open(path.join(here, 'README_pypi.rst'), encoding='utf-8') as readme_file:
     readme = readme_file.read()
 
 with open(path.join(here, 'HISTORY.rst'), encoding='utf-8') as history_file:
     history = history_file.read().replace('.. :changelog:', '')
 
 requirements = [
-     'click', 'numpy', 'pandas>=0.20.2', 'matplotlib', 'bottle'
+     'numpy', 'pandas>=0.20.2', 'matplotlib', 'bottle'
 ]
 
 test_requirements = [

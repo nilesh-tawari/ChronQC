@@ -4,8 +4,7 @@ Install ChronQC
 Requirement
 ```````````
 
-Generating database and creating interactive charts is performed with code written for Python.
-
+ChronQC is implemented in Python (tested with v2.7 / v3.5 / v3.6) and runs on all common operating systems (Windows, Linux and Mac OS X).
 
 Installation
 ````````````

@@ -15,6 +15,8 @@
 		}
 	}
 
+	var $id_perSample = "$id_perSample_bool";
+
 	$graphvar = new Dygraph(
     	document.getElementById("$divname"),
 		$dataname, 
@@ -41,58 +43,39 @@
 			legendFormatter: legendFormatter,
 			axes: {
 				x: {
-					axisLabelFormatter: function (d, gran) {
-						return moment(d).format("MMM YY");
-					},
 					valueFormatter: function (d,opt,se,dy,row,col) {
 						var text = [], 
 						data = $dataname[row],
 						run = $runname[row],
 						sample = $samplename[row];
 
-						if (run[1].length == 0){
-							if (data[1]==null){
-								text = "<b>Run Name: </b>".fontcolor("#800000") + run[0] 
-										+ "<br/><b>Sample Name (y-value): </b>".fontcolor("#008080") + "<font size='-1.5'>" + sample + "</font>" 
-										+ "<br><b>Date:</b> ".fontcolor("#800080") + moment(d).format("DD/MM/YYYY") 
-										+ "<br/><b>Threshold: </b>".fontcolor("#ff0000") + data[2]
-										+ "<br/><b>$ylabel: </b>".fontcolor("#000080") + data[3]
-								return text
-
-							}
-							else{
-								text = "<b>Run Name: </b>".fontcolor("#800000") + run[0] 
-										+ "<br/><b>Sample Name (y-value): </b>".fontcolor("#008080") + "<font size='-1.5'>" + sample + "</font>" 
-										+ "<br><b>Date:</b> ".fontcolor("#800080") + moment(d).format("DD/MM/YYYY") 
-										+ "<br/><b>Upper Threshold: </b>".fontcolor("#ff0000") + data[1]
-										+ "<br/><b>Lower Threshold: </b>".fontcolor("#ff0000") + data[2]
-										+ "<br/><b>$ylabel: </b>".fontcolor("#000080") + data[3]
-								return text						
-							}
-						}else if (run[1].length != 0){
-							note = "<br/><b>Notes: </b><br/>" + run[1]
-							if (data[1]==null){
-
-								text = "<b>Run Name: </b>".fontcolor("#800000") + run[0] 
-										+ "<br/><b>Sample Name (y-value): </b>".fontcolor("#008080") + "<font size='-1.5'>" + sample + "</font>" 
-										+ "<br><b>Date:</b> ".fontcolor("#800080") + moment(d).format("DD/MM/YYYY") 
-										+ "<br/><b>Threshold: </b>".fontcolor("#ff0000") + data[2]
-										+ "<br/><b>$ylabel: </b>".fontcolor("#000080") + data[3]
-										+ note.fontcolor("red") ;
-								return text								
-							}
-							else{
-								text = "<b>Run Name: </b>".fontcolor("#800000") + run[0] 
-										+ "<br/><b>Sample Name (y-value): </b>".fontcolor("#008080") + "<font size='-1.5'>" + sample + "</font>" 
-										+ "<br><b>Date:</b> ".fontcolor("#800080") + moment(d).format("DD/MM/YYYY") 
-										+ "<br/><b>Upper Threshold: </b>".fontcolor("#ff0000") + data[1]
-										+ "<br/><b>Lower Threshold: </b>".fontcolor("#ff0000") + data[2]
-										+ "<br/><b>$ylabel: </b>".fontcolor("#000080") + data[3]
-										+ note.fontcolor("red") ;
-								return text
-							}
+						if ($id_perSample == "False"){
+							text = "<b>Run ID: </b>".fontcolor("#800000") + run[0] 
+									+ "<br/><b>Sample ID (y-value): </b>".fontcolor("#008080") + "<font size='-1.5'>" + sample + "</font>" 
+									+ "<br><b>Date:</b> ".fontcolor("#800080") + moment(d).format("DD/MM/YYYY")
+									+ "<br/><b>$ylabel: </b>".fontcolor("#000080") + data[3] 
+						}else{
+							text = "<b>Sample ID: </b>".fontcolor("#800000") + run[0] 
+									+ "<br/><b>Run ID: </b>".fontcolor("#008080") + "<font size='-1.5'>" + sample + "</font>" 
+									+ "<br><b>Date:</b> ".fontcolor("#800080") + moment(d).format("DD/MM/YYYY")
+									+ "<br/><b>$ylabel: </b>".fontcolor("#000080") + data[3] 
 						}
-						else{console.log("Error in labels")}
+						
+						if (data[1]==null){
+							text = text + "<br/><b>Threshold: </b>".fontcolor("#ff0000") + data[2]
+						}
+						else{
+							text = text + "<br/><b>Upper Threshold: </b>".fontcolor("#ff0000") + data[1]
+									+ "<br/><b>Lower Threshold: </b>".fontcolor("#ff0000") + data[2]
+						}
+						
+						if (run[1].length != 0){
+							note = "<br/><b>Notes: </b><br/>" + run[1]
+							text = text + note.fontcolor("red");
+							return text
+						}
+					
+						return text
 						
 					},					
 				},

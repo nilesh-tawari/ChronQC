@@ -51,8 +51,8 @@
 						run = $runname[row],
 						sample = $samplename[row];
 						
-						text = "<b>Run Name: </b>".fontcolor("#800000") + run[0] 
-								+ "<br/><b>Sample Name (y-value): </b>".fontcolor("#008080") + "<font size='-1.5'>" + sample + "</font>" 
+						text = "<b>Run ID: </b>".fontcolor("#800000") + run[0] 
+								+ "<br/><b>Sample ID (y-value): </b>".fontcolor("#008080") + "<font size='-1.5'>" + sample + "</font>" 
 								+ "<br><b>Date:</b> ".fontcolor("#800080") + moment(d).format("DD/MM/YYYY") 
 								+ "<br/><b>$ylabel: </b>".fontcolor("#000080") + data
 						

@@ -1,9 +1,10 @@
 Time series plot with absolute threshold
 ========================================
 
-
-A time series plot of numerical data with user defined lower and upper
-thresholds.
+A time series plot of numerical data with user defined lower and upper thresholds. Numerical data in ``y_value`` column of the SQLite table defined by ``table_name`` is used to plot this graph.
+SQLite table must have; ``Run, Sample, Date, y_value`` columns to generate the plot. 
+In case of ``per_sample`` graph ``Run`` column is not required.  
+For ``per_sample`` graph if only ``Run`` column is present in the table, ``Run`` column is used to generate plots.
 
 
 Example Plot
@@ -18,7 +19,7 @@ Chart Properties
 +------------------+-----------------------------------+-----------------------------------------------------------------------------------------------+
 | Option           | Type                              | Use                                                                                           |
 +==================+===================================+===============================================================================================+
-| Chart_title      | String (Optional)                 | This is used to creates the tile of the chart.                                                |
+| Chart_title      | String (Optional)                 | This is used to create the title of the chart.                                                |
 |                  |                                   | Default is  "{y_label} (Mean per run)".                                                       |
 |                  |                                   | E.g. "Qualimap Median Coverage (Mean per run)".                                               |
 +------------------+-----------------------------------+-----------------------------------------------------------------------------------------------+
@@ -47,9 +48,9 @@ Example JSON entry (minimum)::
       {
        "chart_type": "time_series_with_absolute_threshold",
        "chart_properties": {
-        "y_value": "Depth",
-        "lower_threshold": 100,
-       }
+           "y_value": "Depth",
+           "lower_threshold": 100,
+           }
       }
      ]
 
@@ -62,11 +63,12 @@ Example JSON entry (full) to plot all samples excluding HCT15 and NTC::
        "exclude_samples": "HCT15, NTC",
        "chart_type": "time_series_with_absolute_threshold",
        "chart_properties": {
-        "chart_title": "Qualimap Median Coverage (Mean per run)",
-        "y_value": "Depth",
-        "lower_threshold": 100,
-        "y_label": "Qualimap Median Coverage (Mean per run)"
-       }
+           "chart_title": "Qualimap Median Coverage (Mean per run)",
+           "y_value": "Depth",
+           "lower_threshold": 100,
+           "y_label": "Qualimap Median Coverage (Mean per run)",
+           "per_sample": "True"
+           }
       }
      ]
 

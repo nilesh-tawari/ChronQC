@@ -1,11 +1,14 @@
 from __future__ import absolute_import, division, print_function, with_statement, unicode_literals
-import click
-from . import chronqc_db
-from . import chronqc_plot
 import argparse
 import sys
-from . import chronqc_annotation
-
+try:
+    from . import chronqc_db
+    from . import chronqc_plot
+    from . import chronqc_annotation
+except (ValueError, SystemError):
+    import chronqc_db
+    import chronqc_plot
+    import chronqc_annotation
 
 def run_plot(args):
     """
@@ -29,7 +32,7 @@ def run_annotation(args):
     """
     runs main function from chronqc_annotation.py
     """
-    print("running chronqc_annotation")
+    #print("running chronqc_annotation")
     chronqc_annotation.main()
 
 # @click.command()

@@ -15,6 +15,8 @@
 		}
 	}
 
+	var $id_perSample = "$id_perSample_bool";
+
 	$graphvar = new Dygraph(
 		document.getElementById("$divname"),
 		$dataname,	
@@ -49,22 +51,29 @@
 						run = $runname[row],
 						sample = $samplename[row];
 						
-						text = "<b>Run Name: </b>".fontcolor("#800000") + run[col] 
-								+ "<br/><b>Sample Name (y-value): </b>".fontcolor("#008080") + "<font size='-1.5'>" + sample + "</font>" 
-								+ "<br><b>Date:</b> ".fontcolor("#800080") + moment(d).format("DD/MM/YYYY") 
-								+ "<br/><b> Mean: </b>".fontcolor("#006400") + data[2]   
-								+ "<br/><b> 2SD: </b>".fontcolor("#ff0000") + data[1] + ' - ' + data[3]  
-								+ "<br/><b> $ylabel: </b>".fontcolor("#000080") + data[4] 
-								+ '</font>'
+						if($id_perSample ==  "True"){
+							text = "<b>Sample ID: </b>".fontcolor("#800000") + run[col] 
+									+ "<br/><b>Run ID: </b>".fontcolor("#008080") + "<font size='-1.5'>" + sample + "</font>" 
+									+ "<br><b>Date:</b> ".fontcolor("#800080") + moment(d).format("DD/MM/YYYY") 
+									+ "<br/><b> Mean: </b>".fontcolor("#006400") + data[2]   
+									+ "<br/><b> 2SD: </b>".fontcolor("#ff0000") + data[1] + ' - ' + data[3]  
+									+ "<br/><b> $ylabel: </b>".fontcolor("#000080") + data[4] + '</font>'
+						}else{
+							text = "<b>Run ID: </b>".fontcolor("#800000") + run[col] 
+									+ "<br/><b>Sample ID (y-value): </b>".fontcolor("#008080") + "<font size='-1.5'>" + sample + "</font>" 
+									+ "<br><b>Date:</b> ".fontcolor("#800080") + moment(d).format("DD/MM/YYYY") 
+									+ "<br/><b> Mean: </b>".fontcolor("#006400") + data[2]   
+									+ "<br/><b> 2SD: </b>".fontcolor("#ff0000") + data[1] + ' - ' + data[3]  
+									+ "<br/><b> $ylabel: </b>".fontcolor("#000080") + data[4] + '</font>'
+						}
 						
-						
-						if (run[1].length == 0){return text}
-						else if (run[1].length != 0) {
+						if (run[1].length != 0){
 							note = "<br/><b>Notes: </b><br/>" + run[1] 
 							text = 	text + note.fontcolor("red") 
-							return text
+							
 						}
-						else {console.log("Error in labels")}
+						
+						return text	
 					},
 				},	
 			},

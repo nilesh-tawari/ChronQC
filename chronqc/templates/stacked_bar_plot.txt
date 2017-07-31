@@ -1,0 +1,96 @@
+	
+	$dataname = $labeldata
+	$label_dataname = $data
+	
+	for (j = 0; j < $dataname.length; j++){
+		$dataname[j][0] = new Date($dataname[j][0])
+	}
+	
+	$graphvar_labels = [$categories];
+	$graphvar_series ={}
+	
+	for (i=0;i<$graphvar_labels.length;i++){
+		if ($graphvar_labels[i]=="Total"){
+			$graphvar_series[$graphvar_labels[i]]={color: "#000000",axis: 'y2',plotter: Dygraph.Plotters.linePlotter,strokeWidth: 1.5,independentTicks: true}
+		}
+		else{
+			a = {}
+			a.color =barchart_Colors[i] 
+			$graphvar_series[$graphvar_labels[i]]= a
+		}
+	}
+	
+	$graphvar = new Dygraph(
+    	document.getElementById("$divname"),
+		$dataname, 
+		{
+            labels: $graphvar_labels,
+			labelsDiv: document.getElementById("$labeldiv"),
+			labelsSeparateLines: true,
+			showRangeSelector: true,
+			includeZero: true,
+			rangeSelectorHeight: 20,
+			rangeSelectorPlotFillColor: "rgba(0,0,0,0)",
+			rangeSelectorPlotFillGradientColor: "rgba(0,0,0,0)",
+			rangeSelectorPlotStrokeColor: "rgba(0,0,0,0)",
+			interactionModel: Dygraph.defaultInteractionModel,
+			plotter: stackedBarPlotter,
+			highlightSeriesOpts: { highlightCircleSize : 5 },
+			legend: "always",
+			title: '$title',
+			xlabel: 'Date',
+			ylabel: '$ylabel',
+			legendFormatter: legendFormatter,
+			axisLabelFontSize: 10,
+			titleHeight: 25,
+			xLabelHeight: 15,
+			yLabelWidth: 15,
+			axes: {
+				x: {
+					axisLabelFormatter: function (d, gran) {
+						return moment(d).format("MMM YY");
+					},
+					valueFormatter: function (d,opt,se,dy,row,col) {
+						
+						var text = [], 
+						data = $label_dataname[row],
+						
+						text = "<br><b>Month:</b> ".fontcolor("#800080") + moment(d).format("MMMM YYYY") 
+						for (i=1;i<$graphvar_labels.length+1; i++){
+							if(i==$graphvar_labels.length){text = text + "<br><b>Total Mutations:</b> ".fontcolor("#000000") + data[i] }
+							else {
+								name= $graphvar_labels[i]
+								color = barchart_Colors[i]
+								text = text +"<br><b>"+ name.fontcolor(color) +":</b> " + data[i]
+							}
+						}
+						
+						return text
+												
+					},				
+				},
+			},
+			series: $graphvar_series,	
+			underlayCallback: function(canvas, area, g) {		
+				canvas.fillStyle = "#0080ff";
+				canvas.strokeStyle = "#0080ff";
+				var [bottom,top] = g.yAxisRange();
+				for(i = 0; i < dateobj.length; i++) {
+					date = dateobj[i];
+					position = g.toDomCoords(date.Annotated_date,bottom);
+					dateobj[i].key3 = position;
+					canvas.fillText(dateobj[i].Notes,dateobj[i].key3[0]+2,dateobj[i].key3[1]-15);
+					canvas.strokeRect(dateobj[i].key3[0],dateobj[i].key3[1]-25,dateobj[i].Notes.length*7,15)
+					canvas.beginPath();
+					canvas.moveTo(dateobj[i].key3[0],dateobj[i].key3[1]);
+					canvas.lineTo(dateobj[i].key3[0],dateobj[i].key3[1]-10);
+					canvas.closePath();
+					canvas.stroke();
+				}
+				
+			}
+		}
+	);		
+	document.getElementById("$restorebutton").onclick 	= function() 	{ restorePositioning($graphvar); };
+	document.getElementById("$yearbutton").onclick 		= function() 	{ $graphvar.updateOptions({dateWindow: [Date.parse('$startdate'),Date.parse('$enddate')]});};
+	gs.push($graphvar);

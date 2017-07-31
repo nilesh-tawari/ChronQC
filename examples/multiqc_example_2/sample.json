@@ -43,7 +43,7 @@
     "chart_type": "time_series_with_absolute_threshold",
     "chart_properties": {
       "y_value": "QualiMap_median_coverage",
-      "lower_threshold": 100,
+      "lower_threshold": 50,
       "per_sample" : "True"
     }
  },
@@ -51,7 +51,14 @@
     "chart_type": "time_series_with_percentage_of_samples_above_threshold",
     "chart_properties": {
       "y_value": "QualiMap_median_coverage",
-      "threshold": 100
+      "threshold": 50
+    }
+ },
+ {
+    "chart_type": "time_series_with_percentage_category",
+    "chart_properties": {
+      "y_value": "Peddy_error",
+      "category": "True"
     }
  }
 ]

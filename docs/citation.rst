@@ -1,7 +1,9 @@
 Citation
 ========
 
-An Open-source Quality Control Monitoring System for Clinical NGS (Manuscript under construction)
+ChronQC: A Quality Control Monitoring System for Clinical Next Generation Sequencing
+ Nilesh R. Tawari, Justine Jia Wen Seow, Dharuman Perumal, Jack L. Ow, Shimin Ang, Arun G. Devasia, Pauline C. Ng
+ (Manuscript under construction)
 
 License
 =======

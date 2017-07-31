@@ -2,8 +2,13 @@
 
 History
 -------
+1.0.2: Changes
 
-Features
+* Added stacked bar plot and bar and line plot
+* Bug fixes
+* Error handling
+
+1.0.1: Features
 
 * Designed for quality control based on historical data
 * Generates interactive time-series plots for various metrics, allowing comparison of the current run to historical runs

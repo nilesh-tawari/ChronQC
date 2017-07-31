@@ -5,7 +5,6 @@ Created on Thu Jun 22 17:01:10 2017
 @author: tawarinr
 """
 from __future__ import absolute_import, division, print_function, with_statement, unicode_literals
-from . import utils
 import os
 import os.path as op
 import sys
@@ -14,6 +13,11 @@ import logging
 import numpy as np
 import pandas as pd
 import sqlite3
+try:
+    from . import utils
+except (ValueError, SystemError):
+    import utils
+    
 try:
     import configparser
     Config = configparser.ConfigParser()  # ver. < 3.0
@@ -49,7 +53,7 @@ def creation_date(path_to_file):
     try:
         file_time = op.getmtime(path_to_file)
         return time.strftime("%m/%d/%Y", time.localtime(file_time))
-    except FileNotFoundError:
+    except:
         return np.nan
 
 
@@ -62,11 +66,11 @@ def main(args):
     takes number of arguments and produces ChronQC SQLite database
     """
     if args.mode == 'update' and not args.db:
-        parser.error("can't update database {} without a -db argument".format(args.mode))
+        print("can't update database {} without a -db argument".format(args.mode))
     elif args.mode == 'update' and args.prefix:
         print("can't use prefix in update mode so ignoring it")
     elif args.mode == 'create' and not args.output:
-        parser.error("provide output directory --output argument for creating db".format(args.mode))
+        print("provide output directory --output argument for creating db".format(args.mode))
 
 # output dir and file
     # Get output directory 1. user defined 2. db dir 3. multiqc_stats dir
@@ -189,6 +193,13 @@ def main(args):
     # remove blank spaces in column names
     df.columns = [x.strip().replace(' ', '_') for x in df.columns]
     logger.info("Kept {0} records after merging run, date and stats for ChronQC SQLite db".format(len(df)))
+# convert boolean types This method will not work for obect type column
+#    booleandf = df.select_dtypes(include=[bool])
+#    booleanDictionary = {True: 'TRUE', False: 'FALSE'}
+#    for column in booleandf:
+#        df[column] = df[column].map(booleanDictionary)        
+    df.replace(to_replace=True, value='TRUE', inplace=True)
+    df.replace(to_replace=False, value='FALSE', inplace=True)
 # write db
     cnx = sqlite3.connect(out_file)
     if args.mode == 'create':
