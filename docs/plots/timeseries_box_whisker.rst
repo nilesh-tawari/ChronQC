@@ -31,7 +31,12 @@ Chart Properties
 | Type             | String (Optional)                 | This is used to select subset of rows from the SQLite table's "Type" columns.                 |
 |                  |                                   | E.g. "SNPs".                                                                                  |
 +------------------+-----------------------------------+-----------------------------------------------------------------------------------------------+
-
+| lower_threshold  | Integer (Optional)                | This is used to create lower threshold line on the chart.                                     |
+|                  |                                   | E.g. 100.                                                                                     |
++------------------+-----------------------------------+-----------------------------------------------------------------------------------------------+
+| upper_threshold  | Integer (Optional)                | This is used to create upper threshold line on the chart.                                     |
+|                  |                                   | E.g. 300.                                                                                      |
++------------------+-----------------------------------+-----------------------------------------------------------------------------------------------+
 
 Example JSON entry (minimum)::
 
@@ -56,7 +61,9 @@ Example JSON entry (full) to plot all samples excluding HCT15 and NTC ::
            "chart_title": "Bcftools Stats Number Of Snps Monthly Box-and-Whisker Plot",
            "y_value": "Number",
            "Type": "SNPs",
-           "y_label": "Bcftools Stats Number Of Snps"
+           "y_label": "Bcftools Stats Number Of Snps",
+           "lower_threshold": 10000,
+           "upper_threshold": 15000
            }
       }
      ]

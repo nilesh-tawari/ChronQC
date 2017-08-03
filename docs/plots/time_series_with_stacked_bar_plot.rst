@@ -52,7 +52,7 @@ Example JSON entry (full) to plot all samples excluding NTC ::
        "table_name": "VCS_Stats_Summary",
        "include_samples": "all",
        "exclude_samples": "NTC",
-       "chart_type": "time_series_with_bar_line_plot",
+       "chart_type": "time_series_with_stacked_bar_plot",
        "chart_properties": {
             "chart_title": "Monthly bar and line plot for Gene (KRAS, KIT, BRAF, PDGFRA, NRAS)",
             "y_value": "Gene",

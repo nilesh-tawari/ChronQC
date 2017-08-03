@@ -35,10 +35,10 @@ Chart Properties
 |                  |                                   | E.g. 100.                                                                                     |
 +------------------+-----------------------------------+-----------------------------------------------------------------------------------------------+
 | upper_threshold  | Integer (Optional)                | This is used to create upper threshold line on the chart.                                     |
-|                  |                                   | E.g.300.                                                                                      |
+|                  |                                   | E.g. 300.                                                                                     |
 +------------------+-----------------------------------+-----------------------------------------------------------------------------------------------+
-| per_sample       | Boolean (Optional)                | Plot per sample graph. Default is “False”.                                                    |
-|                  |                                   | If set to “True” per sample graph will be plotted.                                            |
+| per_sample       | Boolean (Optional)                | Plot per sample graph. Default is "False".                                                    |
+|                  |                                   | If set to "True" per sample graph will be plotted.                                            |
 +------------------+-----------------------------------+-----------------------------------------------------------------------------------------------+
 
 

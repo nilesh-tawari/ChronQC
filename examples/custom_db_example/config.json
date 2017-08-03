@@ -136,6 +136,8 @@
       "chart_title": "Number of indels found in Samples Over Time",
       "y_value": "Number",
       "Type": "Indels",
+      "lower_threshold": 1521,
+      "upper_threshold": 1960,
       "y_label": "Number of indels found in each sample"
     }
   },

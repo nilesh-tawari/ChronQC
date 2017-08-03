@@ -19,7 +19,7 @@
     	document.getElementById("$divname"),
 		$dataname, 
 		{
-            labels: ["Date","1st Quantile","3rd Quantile","Upper Whisker", "Lower Whisker", "Median","Scatter"],
+            labels: ["Date","1st Quantile","3rd Quantile","Upper Whisker", "Lower Whisker", "Median","Scatter", "Upper Threshold", "Lower Threshold"],
 			labelsDiv: document.getElementById("$labeldiv"),
 			labelsSeparateLines: true,
 			showRangeSelector: true,
@@ -59,8 +59,18 @@
 								+ "<br><b>Median:</b> ".fontcolor("#7e04a3") + data[5] 
 								+ "<br><b>1st Quantile:</b> ".fontcolor("#4DD8AD") + data[1] 
 								+ "<br><b>Lower Whisker:</b> ".fontcolor("#f442d1") + data[4] 
-								+ "<br><b>Outlier:</b> ".fontcolor("#0080ff") + data[6] 
-
+						
+						if (data[6] != null){
+							text = text + "<br><b>Outlier:</b> ".fontcolor("#0080ff") + data[6] 
+						}
+						
+						if (data[7] != null){
+							text = text + "<br><b>Upper Threshold:</b> ".fontcolor("#ff0000") + data[7] 
+						}
+						
+						if (data[8] != null){
+							text = text + "<br><b>Lower Threshold:</b> ".fontcolor("#ff0000") + data[8] 
+						}
 					
 						if (run[1].length == 0){return text}
 						else if (run[1].length != 0){
@@ -95,6 +105,18 @@
 					color: "#0080ff",
 					plotter: Dygraph.Plotters.linePlotter,
 					strokeWidth: 0
+				},
+				"Upper Threshold" : {
+					plotter: Dygraph.Plotters.linePlotter,
+					strokePattern: Dygraph.DASHED_LINE ,
+					color: "#ff0000",
+					strokeWidth: 2, 
+				},
+				"Lower Threshold" : {
+					plotter: Dygraph.Plotters.linePlotter,
+					strokePattern: Dygraph.DASHED_LINE ,
+					color: "#ff0000",
+					strokeWidth: 2, 
 				}
 			},	
 			underlayCallback: function(canvas, area, g) {		
@@ -135,11 +157,14 @@
 				
 			},
 			pointClickCallback: function(e, point) {
-				run = $runname[point.idx][0]
-				date = $dataname[point.idx][0]
-				date =  moment(date).format("DD-MM-YYYY")
-				//copyToClipboard(run)
-				makeQuery(run,date)
+				if($dataname[point.idx][6] == null)return;
+				else{
+					run = $runname[point.idx][0]
+					date = $dataname[point.idx][0]
+					date =  moment(date).format("DD-MM-YYYY")
+					//copyToClipboard(run)
+					makeQuery(run,date)
+				}
 			},
 		}
 	);		

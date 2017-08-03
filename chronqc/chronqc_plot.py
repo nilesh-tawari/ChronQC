@@ -275,7 +275,7 @@ def absolute_threshold(df, column, lower_threshold=np.nan, upper_threshold=np.na
     return df_bq
 
 
-def box_whisker_plot(df, ColumnName, Type=''):
+def box_whisker_plot(df, ColumnName, Type='', lower_threshold=np.nan, upper_threshold=np.nan):
     """
     (df) -> df
     generate box plot data form the df
@@ -337,10 +337,13 @@ def box_whisker_plot(df, ColumnName, Type=''):
                                          'Run', 'Sample'])
     df_bp['Sample'].fillna('NA', inplace=True)
     df_bp['Run'].fillna('NA', inplace=True)
+    # set threshold
+    df_bp['lower_threshold'] = float(lower_threshold)
+    df_bp['upper_threshold'] = float(upper_threshold)
     # Add dumy dates at begnining and end of dataframe
     df_bp = add_dates(df_bp)
     # Format data for writing to html file
-    df_bp['Data'] = df_bp[['Date', '25%', '75%', 'Upper_whisker', 'Lower_whisker', '50%', 'Outlier']].values.tolist()
+    df_bp['Data'] = df_bp[['Date', '25%', '75%', 'Upper_whisker', 'Lower_whisker', '50%', 'Outlier', 'upper_threshold', 'lower_threshold']].values.tolist()
     df_bp = format_date_names(df_bp)
     return df_bp
 
@@ -682,14 +685,18 @@ def main(args):
             chart_title = chart["chart_properties"].get('chart_title', t)
             y_label = chart["chart_properties"].get('y_label', y)
             Type = chart["chart_properties"].get("Type", '')
+            lower_threshold = chart["chart_properties"].get("lower_threshold", np.nan) 
+            upper_threshold = chart["chart_properties"].get("upper_threshold", np.nan)
             js_tmpl = string.Template(open(op.join(templates_dir, "box_whisker_plot.txt")).read())
             if not column_name in df.columns:
                 logger.critical("FATAL: no {0} column found in {1}".format(column_name, table))
                 sys.exit(1)
             if Type != '':
-                df_chart = box_whisker_plot(df, column_name, Type=Type)
+                df_chart = box_whisker_plot(df, column_name, Type=Type, 
+                                        lower_threshold=lower_threshold,
+                                        upper_threshold=upper_threshold)
             else:
-                df_chart = box_whisker_plot(df, column_name)
+                df_chart = box_whisker_plot(df, column_name, lower_threshold=lower_threshold, upper_threshold=upper_threshold)
             logger.info("For {0}: {1} data points will be written to html".format(chart_id, len(df_chart)))
         elif chart['chart_type'] == 'time_series_with_bar_line_plot':
             if categories == '':
