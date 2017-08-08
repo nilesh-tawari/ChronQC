@@ -15,7 +15,7 @@ import pandas as pd
 import sqlite3
 try:
     from . import utils
-except (ValueError, SystemError):
+except (ValueError, SystemError, ImportError):
     import utils
     
 try:

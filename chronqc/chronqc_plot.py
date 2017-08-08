@@ -20,7 +20,7 @@ from dateutil.relativedelta import relativedelta
 import warnings
 try:
     from . import utils
-except (ValueError, SystemError):
+except (ValueError, SystemError, ImportError):
     import utils
 warnings.simplefilter(action="ignore", category=RuntimeWarning)
 

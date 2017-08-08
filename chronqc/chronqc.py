@@ -5,7 +5,7 @@ try:
     from . import chronqc_db
     from . import chronqc_plot
     from . import chronqc_annotation
-except (ValueError, SystemError):
+except (ValueError, SystemError, ImportError):
     import chronqc_db
     import chronqc_plot
     import chronqc_annotation
