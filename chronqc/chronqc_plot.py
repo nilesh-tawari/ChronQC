@@ -534,7 +534,7 @@ def main(args):
     vals = {'htmltemplates': '', 'calendartemplates': '',
             'javascripttemplate': '', 'sidebartemplates': '',
             'j': '$j', 'panel': panel, 'startdate': '$startdate',
-            'enddate': '$enddate', 'datetime': datetime}
+            'enddate': '$enddate', 'datetime': datetime, 'pdfname': '$pdfname'}
     i = 1
     chart_ids = []
     group_ids = {}
@@ -771,6 +771,7 @@ def main(args):
         sidebar_tmpl = string.Template(open(op.join(templates_dir, "sidebar.txt")).read())
         vals[chart_id + '_sidebar'] = sidebar_tmpl.substitute(**vals[chart_id + 'htmltemplates'])
         utils.print_progress(i+1, len(config)+2, prefix='Running ChronQC', decimals=1, bar_length=50)
+    vals['pdfname'] = "%s.pdf" % prefix
     # substitute vals in main template
     tmpl = string.Template(tmpl).substitute(**vals)
     with open(out_file, "w") as fh:

@@ -37,7 +37,6 @@
 			interactionModel: Dygraph.defaultInteractionModel,
 			includeZero: true,	
 			displayAnnotations: true,
-			drawHighlightPointCallback: Dygraph.Circles.HEXAGON,
 			axisLabelFontSize: 10,
 			titleHeight: 25,
 			xLabelHeight: 15,
