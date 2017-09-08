@@ -147,7 +147,7 @@ def main():
                                                 'Type "chronqc annotation -h" \
                                                 for help on starting ChronQC annotation server.')
         annotate_parser.add_argument('--port', required = False, action=Highlander, \
-                        help='Four digit port number e.g. 8000. Default is 8000')
+                        help='Four digit port number e.g. 8000. Default is 8000.')
         annotate_parser.set_defaults(func=run_annotation)
 
         args = parser.parse_args()

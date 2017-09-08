@@ -1,0 +1,123 @@
+[
+    {
+        "table_name": "chronqc_stats_data",
+        "chart_type": "time_series_with_absolute_threshold",
+        "chart_properties": {
+            "y_value": "QualiMap_median_coverage",
+            "lower_threshold": 30
+        }
+    },
+    {
+        "table_name": "chronqc_stats_data",
+        "chart_type": "time_series_with_percentage_of_samples_above_threshold",
+        "chart_properties": {
+            "y_value": "QualiMap_median_coverage",
+            "threshold": 30
+        }
+    },
+    {
+        "table_name": "chronqc_stats_data",
+        "chart_type": "time_series_with_mean_and_stdev",
+        "chart_properties": {
+            "y_value": "FastQC_percent_duplicates"
+        }
+    },
+    {
+        "table_name": "chronqc_stats_data",
+        "chart_type": "time_series_with_mean_and_stdev",
+        "chart_properties": {
+            "y_value": "FastQC_percent_gc"
+        }
+    },
+    {
+        "table_name": "chronqc_stats_data",
+        "chart_type": "time_series_with_mean_and_stdev",
+        "chart_properties": {
+            "y_value": "FastQC_total_sequences"
+        }
+    },
+    {
+        "table_name": "chronqc_stats_data",
+        "chart_type": "time_series_with_mean_and_stdev",
+        "chart_properties": {
+            "y_value": "FastQC_avg_sequence_length"
+        }
+    },
+    {
+        "table_name": "chronqc_stats_data",
+        "chart_type": "time_series_with_mean_and_stdev",
+        "chart_properties": {
+            "y_value": "FastQC_percent_fails"
+        }
+    },
+    {
+        "table_name": "chronqc_stats_data",
+        "chart_type": "time_series_with_mean_and_stdev",
+        "chart_properties": {
+            "y_value": "Bcftools_Stats_tstv"
+        }
+    },
+    {
+        "table_name": "chronqc_stats_data",
+        "chart_type": "time_series_with_mean_and_stdev",
+        "chart_properties": {
+            "y_value": "QualiMap_percentage_aligned"
+        }
+    },
+    {
+        "table_name": "chronqc_stats_data",
+        "chart_type": "time_series_with_mean_and_stdev",
+        "chart_properties": {
+            "y_value": "QualiMap_30_x_pc"
+        }
+    },
+    {
+        "table_name": "chronqc_stats_data",
+        "chart_type": "time_series_with_mean_and_stdev",
+        "chart_properties": {
+            "y_value": "QualiMap_mapped_reads"
+        }
+    },
+    {
+        "table_name": "chronqc_stats_data",
+        "chart_type": "time_series_with_box_whisker_plot",
+        "chart_properties": {
+            "y_value": "Bcftools_Stats_number_of_MNPs"
+        }
+    },
+    {
+        "table_name": "chronqc_stats_data",
+        "chart_type": "time_series_with_box_whisker_plot",
+        "chart_properties": {
+            "y_value": "Bcftools_Stats_number_of_SNPs"
+        }
+    },
+    {
+        "table_name": "chronqc_stats_data",
+        "chart_type": "time_series_with_box_whisker_plot",
+        "chart_properties": {
+            "y_value": "Bcftools_Stats_number_of_indels"
+        }
+    },
+    {
+        "table_name": "chronqc_stats_data",
+        "chart_type": "time_series_with_box_whisker_plot",
+        "chart_properties": {
+            "y_value": "Bcftools_Stats_number_of_records"
+        }
+    },
+    {
+        "table_name": "chronqc_stats_data",
+        "chart_type": "time_series_with_mean_and_stdev",
+        "chart_properties": {
+            "y_value": "QualiMap_total_reads"
+        }
+    },
+    {
+        "table_name": "chronqc_stats_data",
+        "chart_type": "time_series_with_mean_and_stdev",
+        "chart_properties": {
+            "y_value": "Samtools_Flagstat_mapped_passed"
+        }
+    }
+]
