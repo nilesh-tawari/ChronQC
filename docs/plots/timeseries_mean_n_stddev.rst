@@ -38,8 +38,8 @@ Chart Properties
 |                  |                                   | based on past 10 runs. 2. window="365D", this will compute rolling mean and standard deviation|
 |                  |                                   | on the runs in past 365 days. Default is "365D".                                              |
 +------------------+-----------------------------------+-----------------------------------------------------------------------------------------------+
-| per_sample       | Boolean (Optional)                | Plot per sample graph. Default is “False”.                                                    |
-|                  |                                   | If set to “True” per sample graph will be plotted.                                            |
+| per_sample       | Boolean (Optional)                | Plot per sample graph. Default is "False".                                                    |
+|                  |                                   | If set to "True" per sample graph will be plotted.                                            |
 +------------------+-----------------------------------+-----------------------------------------------------------------------------------------------+
 
 

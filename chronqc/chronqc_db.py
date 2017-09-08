@@ -13,6 +13,7 @@ import logging
 import numpy as np
 import pandas as pd
 import sqlite3
+import json
 try:
     from . import utils
 except (ValueError, SystemError, ImportError):
@@ -93,6 +94,8 @@ def main(args):
         out_file = op.join(output_directory, output_prefix)
         output_cols = '{0}.{1}'.format(args.prefix, 'chronqc.stats.cols.txt') if args.prefix is not None else '{0}'.format('chronqc.stats.cols.txt')
         out_cols = op.join(output_directory, output_cols)
+        output_json = '{0}.{1}'.format(args.prefix, 'chronqc.default.json') if args.prefix is not None else '{0}'.format('chronqc.default.json')
+        out_json = op.join(output_directory, output_json)
 
 # create logger
     log_file = op.join(output_directory, 'chronqc_stats.log')
@@ -167,14 +170,35 @@ def main(args):
     utils.print_progress(3, 4, prefix='Running ChronQC', decimals=1, bar_length=50)
 
 # Read config and get default parameters
-#    sdir = op.dirname(op.abspath('__file__'))
-#    config_file = op.join(sdir, 'config', 'chronqc.conf')
-#    Config.read(config_file)
+    sdir = op.dirname(op.abspath('__file__'))
+    config_file = op.join(sdir, 'config', 'chronqc.conf')
+    Config.read(config_file)
     # [ignore_columns]
-#    ignore_columns = Config.get('ignore_columns', 'columns').split(',')
-#    ignore_columns = [s.strip() for s in ignore_columns]
-#    logger.info("Finished reading parameters from config file for generating \
-#                chronqc db and json")
+    ignore_columns = Config.get('ignore_columns', 'columns').split(',')
+    ignore_columns = [s.strip() for s in ignore_columns]
+    # [time_series_with_box_whisker_plot]
+    box_whisker_plot = Config.get('time_series_with_box_whisker_plot', 'columns').split(',')
+    box_whisker_plot = [s.strip() for s in box_whisker_plot]
+    # [time_series_with_mean_and_stdev]
+    mean_and_stdev = Config.get('time_series_with_mean_and_stdev', 'columns').split(',')
+    mean_and_stdev = [s.strip() for s in mean_and_stdev]
+    # [time_series_with_absolute_threshold]
+    absolute_threshold_c = Config.get('time_series_with_absolute_threshold', 'columns').split(',')
+    absolute_threshold_c = [s.strip() for s in absolute_threshold_c]
+#    absolute_threshold = Config.get('time_series_with_absolute_threshold', 'threshods').split(',')
+#    absolute_threshold = [int(s.strip()) for s in absolute_threshold]
+    # [time_series_with_percentage_of_samples_above_threshold]
+    percentage_of_samples_above_threshold_c = Config.get('time_series_with_percentage_of_samples_above_threshold', 'columns').split(',')
+    percentage_of_samples_above_threshold_c = [s.strip() for s in percentage_of_samples_above_threshold_c]
+#    percentage_of_samples_above_threshold = Config.get('time_series_with_percentage_of_samples_above_threshold', 'threshods').split(',')
+#    percentage_of_samples_above_threshold = [int(s.strip()) for s in percentage_of_samples_above_threshold]
+    # [time_series_with_percentage_category]
+    percentage_category_c = Config.get('time_series_with_percentage_category', 'columns').split(',')
+    percentage_category_c = [s.strip() for s in percentage_category_c]
+#    percentage_category = Config.get('time_series_with_percentage_category', 'categories').split(',')
+#    percentage_category = [s.strip() for s in percentage_category]
+    logger.info("Finished reading parameters from config file for generating \
+                chronqc db and json")
 
 # remove unwanted columns
     cols = [col for col in list(df.columns)]
@@ -193,7 +217,7 @@ def main(args):
     # remove blank spaces in column names
     df.columns = [x.strip().replace(' ', '_') for x in df.columns]
     logger.info("Kept {0} records after merging run, date and stats for ChronQC SQLite db".format(len(df)))
-# convert boolean types This method will not work for obect type column
+# convert boolean types This method will not work for object type column
 #    booleandf = df.select_dtypes(include=[bool])
 #    booleanDictionary = {True: 'TRUE', False: 'FALSE'}
 #    for column in booleandf:
@@ -208,6 +232,66 @@ def main(args):
         for item in list(df.columns):
             out_cols.write("%s\n" % item)
         out_cols.close()
+        # create default JSON file
+        # only numeric columns
+        df_num = df._get_numeric_data()
+        num_cols = list(df_num)
+        #############################################################
+        default_json = []
+        # absolute_threshold
+        absolute_threshold_c = [c for c in absolute_threshold_c if c not in ignore_columns]
+        absolute_threshold_c = [c for c in absolute_threshold_c if c in num_cols]
+        abst = '{{"table_name": "{0}", "chart_type": "time_series_with_absolute_threshold", "chart_properties": {{"y_value": "{1}",  "lower_threshold": 30}}}}'
+        for col in absolute_threshold_c:
+            default_json.append(json.loads(abst.format(table_name, col)))  
+        # percentage_of_samples_above_threshold
+        percentage_of_samples_above_threshold_c = [c for c in percentage_of_samples_above_threshold_c if c not in ignore_columns]
+        percentage_of_samples_above_threshold_c = [c for c in percentage_of_samples_above_threshold_c if c in num_cols]
+        pctth = '{{"table_name": "{0}", "chart_type": "time_series_with_percentage_of_samples_above_threshold", "chart_properties": {{"y_value": "{1}",  "threshold": 30}}}}'
+        for col in percentage_of_samples_above_threshold_c:
+            default_json.append(json.loads(pctth.format(table_name, col)))  
+        # percentage_category
+        percentage_category_c = [c for c in percentage_category_c if c not in ignore_columns]
+        percentage_category_c = [c for c in percentage_category_c if c in num_cols]
+        pctcat = '{{"table_name": "{0}", "chart_type": "time_series_with_percentage_category", "chart_properties": {{"y_value": "{1}",  "category": "TRUE"}}}}'
+        for col in percentage_category_c:
+            default_json.append(json.loads(pctcat.format(table_name, col))) 
+        # mean_and_stdev
+        mean_and_stdev = [c for c in mean_and_stdev if c not in ignore_columns]
+        mean_and_stdev = [c for c in mean_and_stdev if c in num_cols]
+        if 'QualiMap_percentage_aligned' and 'Bamtools_mapped_reads_pct' in mean_and_stdev:
+            mean_and_stdev.remove('Bamtools_mapped_reads_pct')
+        if 'FastQC_percent_gc' and 'QualiMap_avg_gc' in mean_and_stdev:
+            mean_and_stdev.remove('QualiMap_avg_gc')
+        if 'QualiMap_mapped_reads' and 'Samtools_Flagstat_mapped_passed' in mean_and_stdev:
+            mean_and_stdev.remove('Samtools_Flagstat_mapped_passed')
+        if 'FastQC_total_sequences' and 'QualiMap_total_reads' in mean_and_stdev:
+            mean_and_stdev.remove('QualiMap_total_reads')            
+        mstd = '{{"table_name": "{0}", "chart_type": "time_series_with_mean_and_stdev", "chart_properties": {{"y_value": "{1}"}}}}'
+        for col in mean_and_stdev:
+            default_json.append(json.loads(mstd.format(table_name, col)))  
+        # box_whisker_plot
+        box_whisker_plot = [c for c in box_whisker_plot if c not in ignore_columns]
+        box_whisker_plot = [c for c in box_whisker_plot if c in num_cols]
+        bwp = '{{"table_name": "{0}", "chart_type": "time_series_with_box_whisker_plot", "chart_properties": {{"y_value": "{1}"}}}}'
+        for col in box_whisker_plot:
+            default_json.append(json.loads(bwp.format(table_name, col)))  
+        # remaining cols 
+        
+        num_cols = [c for c in num_cols if c not in ignore_columns]
+        num_cols = [c for c in num_cols if c not in box_whisker_plot]
+        num_cols = [c for c in num_cols if c not in mean_and_stdev]
+        num_cols = [c for c in num_cols if c not in absolute_threshold_c]
+        num_cols = [c for c in num_cols if c not in percentage_of_samples_above_threshold_c]
+        num_cols = [c for c in num_cols if c not in percentage_category_c]
+        print(num_cols)
+        if len(num_cols) > 0:
+            for col in num_cols:
+                default_json.append(json.loads(mstd.format(table_name, col)))  
+        
+        with open(out_json, 'w') as out_json:
+            json.dump(default_json, out_json, sort_keys = False, indent = 4,
+               ensure_ascii = False) 
         logger.info("Created ChronQC db: {0} with {1} records".format(out_file, len(df)))
     elif args.mode == 'update':
         df.to_sql(table_name, cnx, index=False, if_exists='append', chunksize = 1000)

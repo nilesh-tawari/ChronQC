@@ -80,7 +80,7 @@ ChronQC config files
 - ``chronqc.stats.cols.txt`` file generated during the ChronQC stats database creation can be used to get column names present in the database.
 - Using the statistics database and a configuration file (JSON), ChronQC generates time series plots for various metrics to create an interactive, self-contained HTML file. 
 - Plots should be mentioned simultaneously in JSON, if are generated from same SQLite table. This ensures proper grouping in sidebar of HTML report.
-- Special characters in the title or y-axis label must be specified as Unicode.
+- Special characters in the title or y-axis label must be specified as HTML entity.
 
 Below is an example of ChronQC config file::
 

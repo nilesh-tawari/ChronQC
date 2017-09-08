@@ -3,9 +3,20 @@ import os.path as op
 import sqlite3
 import pandas as pd
 from datetime import date
+import sys
 
-
-def main():
+def main(args):
+    # Parameters
+    port = 8000
+    if args.port is not None:
+        if not len(args.port) == 4:
+            print('Please use Four digit integer value for the port e.g. 8000')
+            sys.exit(1)
+        try:
+            port = int(args.port)
+        except:
+            print('Please use Four digit integer value for the port e.g. 8000')
+            sys.exit(1)
     ###############################################################################
 
     '''Run Annotations'''
@@ -95,9 +106,6 @@ def main():
         return dateannotation
 
     ###############################################################################
-    run(host='localhost', port=8000)
+    run(host='localhost', port=port)
     # And the MOST important line to set this program as a web service is this
     # run(host=socket.gethostname(), port=8001)
-
-if __name__ == '__main__':
-    main()

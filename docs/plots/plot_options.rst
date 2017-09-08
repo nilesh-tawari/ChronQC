@@ -43,7 +43,7 @@ Following options are available for each chart type and can be set in the JSON f
 | table_name       | String (Optional)                 | This is used to get data from the SQLite table.                                               |
 |                  |                                   | Default is "chronqc_stats_data".                                                              |
 +------------------+-----------------------------------+-----------------------------------------------------------------------------------------------+
-| inlcude_samples  | String (Optional)                 | This is used to select samples from the SQLite table. It can be either "all" or a list of     |
+| include_samples  | String (Optional)                 | This is used to select samples from the SQLite table. It can be either "all" or a list of     |
 |                  |                                   | sample names. If "all" all samples are selected. If a list of strings, samples matching the   |
 |                  |                                   | elements in a comma-delimited list will be selected. String matching is partial.              |
 |                  |                                   | For example, "HCT15, NTC" would include samples called HCT15, NTC, NTC1, NTC2.                |

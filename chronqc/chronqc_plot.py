@@ -678,6 +678,7 @@ def main(args):
                                           lower_threshold=lower_threshold,
                                           upper_threshold=upper_threshold,
                                           Type=Type, per_sample=per_sample)
+            #df_chart.to_clipboard(sep=',')
             logger.info("For {0}: {1} data points will be written to html".format(chart_id, len(df_chart)))
         elif chart['chart_type'] == 'time_series_with_box_whisker_plot':
             t = '{0} Monthly Box-and-Whisker Plot'.format(y)
