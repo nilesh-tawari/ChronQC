@@ -284,15 +284,14 @@ def main(args):
         num_cols = [c for c in num_cols if c not in absolute_threshold_c]
         num_cols = [c for c in num_cols if c not in percentage_of_samples_above_threshold_c]
         num_cols = [c for c in num_cols if c not in percentage_category_c]
-        print(num_cols)
         if len(num_cols) > 0:
             for col in num_cols:
                 default_json.append(json.loads(mstd.format(table_name, col)))  
-        
         with open(out_json, 'w') as out_json:
             json.dump(default_json, out_json, sort_keys = False, indent = 4,
                ensure_ascii = False) 
         logger.info("Created ChronQC db: {0} with {1} records".format(out_file, len(df)))
+        logger.info("Created ChronQC default JSON file: {0}. Customize the JSON as needed before generating ChronQC plots.".format(out_json))
     elif args.mode == 'update':
         df.to_sql(table_name, cnx, index=False, if_exists='append', chunksize = 1000)
         logger.info("Updated ChronQC db: {0} with {1} records".format(out_file, len(df)))
@@ -300,5 +299,6 @@ def main(args):
     utils.print_progress(4, 4, prefix='Running ChronQC', decimals=1, bar_length=50)
     if args.mode == 'create':
         print("Created ChronQC db: {0} with {1} records".format(out_file, len(df)))
+        print("Created ChronQC default JSON file: {0}. Customize the JSON as needed before generating ChronQC plots.".format(out_json))
     elif args.mode == 'update':
         print("Updated ChronQC db: {0} with {1} records".format(out_file, len(df)))
