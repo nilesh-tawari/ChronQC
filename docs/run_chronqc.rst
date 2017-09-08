@@ -36,10 +36,19 @@ Step 1: Create a ChronQC database::
 A sqlite database ``chronqc.stats.sqlite`` and ``chronqc.stats.cols.txt`` file are created in ``chronqc_db`` folder under the ``.`` (current) directory. 
 
 Step 2: Create ChronQC plots::
-    
+
+The types of created plots and their properties are specified in JSON file.
+Plots can be generated using the default ``chronqc.default.json`` file,
+
+    chronqc plot -db chronqc_db/chronqc.stats.sqlite -json chronqc_db/chronqc.default.json -panel SOMATIC -o .    
+
+Interactive html report is created in ``chronqc_output`` under the ``.`` (current) directory.
+
+*Customizing the JSON*
+
+It is strongly adviced to create custom JSON file, based on the laboratories assay tracking strategy. A sample of custom JSON is included in the folder. `chronqc.stats.cols.txt` file contains column names present in the database, and can be used to create the config file. For details on creating the config file visit `documentation. <http://chronqc.readthedocs.io/en/latest/plots/plot_options.html>`__
     chronqc plot -db chronqc_db/chronqc.stats.sqlite -json sample.json -panel SOMATIC -o .
 
-The types of created plots and their properties are specified in "sample.json" file. For details on creating the config file visit `documentation. <http://chronqc.readthedocs.io/en/latest/plots/plot_options.html>`__
 Interactive html report is created in ``chronqc_output`` under the ``.`` (current) directory.
 
 
@@ -54,6 +63,7 @@ Step 1: Create a ChronQC database::
     chronqc database --create -multiqc_stats year_2016/multiqc_data/multiqc_general_stats.txt -run_date_info year_2016/run_date_info.csv -panel Germline -o .
 
 A sqlite database ``chronqc.stats.sqlite`` and `chronqc.stats.cols.txt` file are created in ``chronqc_db`` folder under the ``.`` (current) directory. 
+A default JSON file named ``chronqc.default.json`` is also created in chronqc_db under the ``.`` (current) directory.
 
 Step 2: Update existing ChronQC database::
 
@@ -61,11 +71,20 @@ Step 2: Update existing ChronQC database::
 
 Step 3: Create ChronQC plots::
 
-    chronqc plot -db chronqc_db/chronqc.stats.sqlite -json sample.json -panel Germline -o .
+The types of created plots and their properties are specified in JSON file.
+Plots can be generated using the default ``chronqc.default.json`` file,
 
-The types of created plots and their properties are specified in "sample.json" file. For details on creating the config file visit `documentation. <http://chronqc.readthedocs.io/en/latest/plots/plot_options.html>`__
+    chronqc plot -db chronqc_db/chronqc.stats.sqlite -json chronqc_db/chronqc.default.json -panel Germline -o . 
+
 Interactive html report is created in ``chronqc_output`` under the ``.`` (current) directory.
 
+*Customizing the JSON*
+
+It is strongly adviced to create custom JSON file, based on the laboratories assay tracking strategy. A sample of custom JSON is included in the folder. `chronqc.stats.cols.txt` file contains column names present in the database, and can be used to create the config file. For details on creating the config file visit `documentation. <http://chronqc.readthedocs.io/en/latest/plots/plot_options.html>`__
+    
+    chronqc plot -db chronqc_db/chronqc.stats.sqlite -json sample.json -panel Germline -o .
+    
+Interactive html report is created in ``chronqc_output`` under the ``.`` (current) directory.
 
 Using ChronQC plots
 ```````````````````
