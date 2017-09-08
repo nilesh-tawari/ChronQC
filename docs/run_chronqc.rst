@@ -47,6 +47,7 @@ Interactive html report is created in ``chronqc_output`` under the ``.`` (curren
 *Customizing the JSON*
 
 It is strongly adviced to create custom JSON file, based on the laboratories assay tracking strategy. A sample of custom JSON is included in the folder. `chronqc.stats.cols.txt` file contains column names present in the database, and can be used to create the config file. For details on creating the config file visit `documentation. <http://chronqc.readthedocs.io/en/latest/plots/plot_options.html>`__
+
     chronqc plot -db chronqc_db/chronqc.stats.sqlite -json sample.json -panel SOMATIC -o .
 
 Interactive html report is created in ``chronqc_output`` under the ``.`` (current) directory.
@@ -81,6 +82,7 @@ Interactive html report is created in ``chronqc_output`` under the ``.`` (curren
 *Customizing the JSON*
 
 It is strongly adviced to create custom JSON file, based on the laboratories assay tracking strategy. A sample of custom JSON is included in the folder. `chronqc.stats.cols.txt` file contains column names present in the database, and can be used to create the config file. For details on creating the config file visit `documentation. <http://chronqc.readthedocs.io/en/latest/plots/plot_options.html>`__
+
     
     chronqc plot -db chronqc_db/chronqc.stats.sqlite -json sample.json -panel Germline -o .
     
