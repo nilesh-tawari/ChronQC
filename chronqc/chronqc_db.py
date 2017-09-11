@@ -76,7 +76,7 @@ def main(args):
 # output dir and file
     # Get output directory 1. user defined 2. db dir 3. multiqc_stats dir
     # Get output file name prefix and out file name
-    multiqc_stats = op.abspath(args.multiqc_stats)
+    multiqc_stats = op.abspath(args.mstats)
     if args.db is not None:
         output_directory, output_prefix = utils.path_leaf(args.db)
         out_file = op.abspath(args.db)
@@ -170,8 +170,9 @@ def main(args):
     utils.print_progress(3, 4, prefix='Running ChronQC', decimals=1, bar_length=50)
 
 # Read config and get default parameters
-    sdir = op.dirname(op.abspath('__file__'))
-    config_file = op.join(sdir, 'config', 'chronqc.conf')
+    #sdir = op.dirname(op.abspath('__file__'))
+    sdir = op.abspath(op.join(op.dirname(__file__), 'config'))
+    config_file = op.join(sdir, 'chronqc.conf')
     Config.read(config_file)
     # [ignore_columns]
     ignore_columns = Config.get('ignore_columns', 'columns').split(',')

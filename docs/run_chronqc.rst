@@ -15,7 +15,7 @@ This example demonstrates generating ChronQC plots from a custom database::
 
 Run following command to generate interactive plots in html::
     
-    chronqc plot -db chronqc_custom_db.sqlite -json config.json -panel Somatic
+    chronqc plot chronqc_custom_db.sqlite Somatic config.json  
 
 The types of created plots and their properties are specified in "config.json" file. For details on creating the config file visit `documentation. <http://chronqc.readthedocs.io/en/latest/plots/plot_options.html>`__
 Interactive html report is created under ``chronqc_output`` directory
@@ -23,7 +23,7 @@ Interactive html report is created under ``chronqc_output`` directory
 
 **2. The output of MultiQC.**
 
-*For creating ChronQC database and plots, see the example below*
+*2.1 For creating ChronQC database and plots, see the example below*
 
 This example demonstrates generating a ChronQC database and creating ChronQC graphs using the database::
     
@@ -31,7 +31,8 @@ This example demonstrates generating a ChronQC database and creating ChronQC gra
     
 Step 1: Create a ChronQC database::
     
-    chronqc database --create -multiqc_stats multiqc_data/multiqc_general_stats.txt -run_date_info run_date_info.csv -panel SOMATIC -o 
+    chronqc database --create --run-date-info run_date_info.csv -o . multiqc_data/multiqc_general_stats.txt SOMATIC 
+    
 
 A sqlite database ``chronqc.stats.sqlite`` and ``chronqc.stats.cols.txt`` file are created in ``chronqc_db`` folder under the ``.`` (current) directory. 
 
@@ -40,7 +41,7 @@ Step 2: Create ChronQC plots::
 The types of created plots and their properties are specified in JSON file.
 Plots can be generated using the default ``chronqc.default.json`` file,
 
-    chronqc plot -db chronqc_db/chronqc.stats.sqlite -json chronqc_db/chronqc.default.json -panel SOMATIC -o .    
+    chronqc plot -o . chronqc_db/chronqc.stats.sqlite SOMATIC chronqc_db/chronqc.default.json     
 
 Interactive html report is created in ``chronqc_output`` under the ``.`` (current) directory.
 
@@ -48,12 +49,12 @@ Interactive html report is created in ``chronqc_output`` under the ``.`` (curren
 
 It is strongly adviced to create custom JSON file, based on the laboratories assay tracking strategy. A sample of custom JSON is included in the folder. `chronqc.stats.cols.txt` file contains column names present in the database, and can be used to create the config file. For details on creating the config file visit `documentation. <http://chronqc.readthedocs.io/en/latest/plots/plot_options.html>`__
 
-    chronqc plot -db chronqc_db/chronqc.stats.sqlite -json sample.json -panel SOMATIC -o .
+    chronqc plot -o . chronqc_db/chronqc.stats.sqlite SOMATIC sample.json
 
 Interactive html report is created in ``chronqc_output`` under the ``.`` (current) directory.
 
 
-*For creating, updating ChronQC database and plots, see the example below*
+*2.2 For creating, updating ChronQC database and plots, see the example below*
 
 This example demonstrates generating a ChronQC database, updating the generated database with new data and creating ChronQC graphs using the database::
 
@@ -61,21 +62,21 @@ This example demonstrates generating a ChronQC database, updating the generated 
 
 Step 1: Create a ChronQC database::
 
-    chronqc database --create -multiqc_stats year_2016/multiqc_data/multiqc_general_stats.txt -run_date_info year_2016/run_date_info.csv -panel Germline -o .
+    chronqc database --create --run-date-info year_2016/run_date_info.csv -o . year_2016/multiqc_data/multiqc_general_stats.txt Germline 
 
 A sqlite database ``chronqc.stats.sqlite`` and `chronqc.stats.cols.txt` file are created in ``chronqc_db`` folder under the ``.`` (current) directory. 
 A default JSON file named ``chronqc.default.json`` is also created in chronqc_db under the ``.`` (current) directory.
 
 Step 2: Update existing ChronQC database::
 
-    chronqc database --update -db chronqc_db/chronqc.stats.sqlite -multiqc_stats year_2017/multiqc_data/multiqc_general_stats.txt -run_date_info year_2017/run_date_info.csv -panel Germline
+    chronqc database --update --db chronqc_db/chronqc.stats.sqlite --run-date-info year_2017/run_date_info.csv year_2017/multiqc_data/multiqc_general_stats.txt Germline
 
 Step 3: Create ChronQC plots::
 
 The types of created plots and their properties are specified in JSON file.
 Plots can be generated using the default ``chronqc.default.json`` file,
 
-    chronqc plot -db chronqc_db/chronqc.stats.sqlite -json chronqc_db/chronqc.default.json -panel Germline -o . 
+    chronqc plot -o . chronqc_db/chronqc.stats.sqlite Germline chronqc_db/chronqc.default.json 
 
 Interactive html report is created in ``chronqc_output`` under the ``.`` (current) directory.
 
@@ -84,7 +85,7 @@ Interactive html report is created in ``chronqc_output`` under the ``.`` (curren
 It is strongly adviced to create custom JSON file, based on the laboratories assay tracking strategy. A sample of custom JSON is included in the folder. `chronqc.stats.cols.txt` file contains column names present in the database, and can be used to create the config file. For details on creating the config file visit `documentation. <http://chronqc.readthedocs.io/en/latest/plots/plot_options.html>`__
 
     
-    chronqc plot -db chronqc_db/chronqc.stats.sqlite -json sample.json -panel Germline -o .
+    chronqc plot -o . chronqc_db/chronqc.stats.sqlite Germline sample.json    
     
 Interactive html report is created in ``chronqc_output`` under the ``.`` (current) directory.
 
@@ -94,7 +95,7 @@ Using ChronQC plots
 ChronQC is designed to be interactive. ChronQC plots can be adjusted to a time period and are zoomable. Mousing over a point displays its associated data such as run ID, sample IDs, and corresponding values. 
 To use the annotation feature of ChronQC plots, start the annotation database connectivity by using `chronqc annotation` command. Default port used for annotation server is 8000, this can be customized by using --port option. 
 Then open the ChronQC output html in a recent browser (tested on: Google Chrome and Mozilla Firefox).
-Users can record notes and corrective actions on the plots by clicking on a point or selecting a date. User notes and corrective actions are stored for long-term recordkeeping in the SQLite ChronQC annotations database. The plots are interlinked so that when an individual point or date is annotated in one graph, the same annotation appears on other graphs. By linking plots with the ChronQC annotations database, users can see the notes and corrective actions recorded previously.
+Users can record notes and corrective actions on the plots by clicking on a point or selecting a date. User notes and corrective actions are stored for long-term recordkeeping in the SQLite ChronQC annotations database. The plots are interlinked so that when an individual point or date is annotated in one graph, the same annotation appears on other graphs. By using the ChronQC report with the ChronQC annotations data-base (by starting the annotation server with "chronqc annotation" command), users can see the notes that have been recorded previously.
 
 ChronQC config files
 ````````````````````
