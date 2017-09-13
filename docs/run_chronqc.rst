@@ -5,16 +5,14 @@ Getting started
 Generating ChronQC plots
 ````````````````````````
 
+.. contents:: **Contents**
+
 ChronQC plots can be generated from,
 
-.. contents:: **Table of Contents**
-
-
-
-1. A custom SQLite database
-===========================
+Using a custom SQLite database
+==============================
    
-This example demonstrates generating ChronQC plots from a custom database::
+This example demonstrates generating ChronQC plots from a custom database,
 
 .. code-block:: shell
 
@@ -23,7 +21,7 @@ This example demonstrates generating ChronQC plots from a custom database::
 ..
 
 
-Run following command to generate interactive plots in html::
+Run following command to generate interactive plots in html,
 
 .. code-block:: shell    
  chronqc plot chronqc_custom_db.sqlite Somatic config.json  
@@ -33,11 +31,11 @@ The types of created plots and their properties are specified in "config.json" f
 Interactive html report is created under ``chronqc_output`` directory
 
 
-2. The output of MultiQC
-========================
+Using the output of MultiQC
+===========================
 
-2.1 Creating ChronQC database and plots
----------------------------------------
+Creating ChronQC database and plots
+-----------------------------------
 
 For creating ChronQC database and plots, see the example below. 
 This example demonstrates generating a ChronQC database and creating ChronQC graphs using the database::
@@ -76,8 +74,8 @@ It is strongly adviced to create custom JSON file, based on the laboratories ass
 Interactive html report is created in ``chronqc_output`` under the ``.`` (current) directory.
 
 
-2.2 Creating, updating ChronQC database and plots
--------------------------------------------------
+Creating, updating ChronQC database and plots
+---------------------------------------------
 
 For creating, updating ChronQC database and plots, see the example below*
 This example demonstrates generating a ChronQC database, updating the generated database with new data and creating ChronQC graphs using the database::
