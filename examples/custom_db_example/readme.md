@@ -8,7 +8,7 @@ Run following command to generate interactive plots in html
 
 `chronqc plot chronqc_custom_db.sqlite Somatic config.json`
 
-The types of created plots and their properties are specified in "config.json" file. For details on creating the config file visit [documentation](https://chronqc.readthedocs.io/en/latest/plots/plot_options.html).
+The types of created plots and their properties are specified in "config.json" file. For details on creating the [config](http://chronqc.readthedocs.io/en/latest/run_chronqc.html#chronqc-config-files) file visit [documentation](https://chronqc.readthedocs.io/en/latest/plots/plot_options.html).
 Interactive html report is created under `chronqc_output`.
 
 ## Using the ChronQC plots

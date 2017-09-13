@@ -20,7 +20,7 @@ This example demonstrates generating ChronQC plots from a custom database,
 ..
 
 
-Run following command to generate interactive plots in html,
+Run following command to generate interactive plots in HTML,
 
 .. code-block:: shell   
 
@@ -28,14 +28,14 @@ Run following command to generate interactive plots in html,
  
 ..
 
-The types of created plots and their properties are specified in "config.json" file. For details on creating the config file visit `documentation. <http://chronqc.readthedocs.io/en/latest/plots/plot_options.html>`__
+The types of created plots and their properties are specified in "config.json" file. For details on creating the `config . <http://chronqc.readthedocs.io/en/latest/run_chronqc.html#chronqc-config-files>`__ file visit `documentation. <http://chronqc.readthedocs.io/en/latest/plots/plot_options.html>`__
 Interactive html report is created under ``chronqc_output`` directory
 
 
 Using the output of MultiQC
 ---------------------------
 
-**Creating ChronQC database and plots**
+**1. Creating ChronQC database and plots**
 
 For creating ChronQC database and plots, see the example below. 
 This example demonstrates generating a ChronQC database and creating ChronQC graphs using the database.
@@ -54,7 +54,7 @@ Step 1: Create a ChronQC database
  
 ..    
 
-A sqlite database ``chronqc.stats.sqlite`` and ``chronqc.stats.cols.txt`` file are created in ``chronqc_db`` folder under the ``.`` (current) directory. 
+A sqlite database ``chronqc.stats.sqlite``, ``chronqc.default.json`` and ``chronqc.stats.cols.txt`` file are created in ``chronqc_db`` folder under the ``.`` (current) directory. 
 
 Step 2: Create ChronQC plots
 
@@ -71,7 +71,7 @@ Interactive html report is created in ``chronqc_output`` under the ``.`` (curren
 
 *Customizing the JSON*
 
-It is strongly adviced to create custom JSON file, based on the laboratories assay tracking strategy. A sample of custom JSON is included in the folder. `chronqc.stats.cols.txt` file contains column names present in the database, and can be used to create the config file. For details on creating the config file visit `documentation. <http://chronqc.readthedocs.io/en/latest/plots/plot_options.html>`__
+It is strongly adviced to create custom JSON file, based on the laboratories assay tracking strategy. A sample of custom JSON is included in the folder. `chronqc.stats.cols.txt` file contains column names present in the database, and can be used to create the config file. For details on creating the `config . <http://chronqc.readthedocs.io/en/latest/run_chronqc.html#chronqc-config-files>`__ file visit `documentation. <http://chronqc.readthedocs.io/en/latest/plots/plot_options.html>`__
 
 .. code-block:: shell
 
@@ -82,10 +82,10 @@ It is strongly adviced to create custom JSON file, based on the laboratories ass
 Interactive html report is created in ``chronqc_output`` under the ``.`` (current) directory.
 
 
-**Creating, updating ChronQC database and plots**
+**2. Creating and updating ChronQC database and creating plots**
 
 
-For creating, updating ChronQC database and plots, see the example below*
+For creating, updating ChronQC database and plots, see the example below.
 This example demonstrates generating a ChronQC database, updating the generated database with new data and creating ChronQC graphs using the database.
 
 .. code-block:: shell
@@ -102,7 +102,7 @@ Step 1: Create a ChronQC database
  
 ..
 
-A sqlite database ``chronqc.stats.sqlite`` and `chronqc.stats.cols.txt` file are created in ``chronqc_db`` folder under the ``.`` (current) directory. 
+A sqlite database ``chronqc.stats.sqlite``, ``chronqc.default.json`` and `chronqc.stats.cols.txt` file are created in ``chronqc_db`` folder under the ``.`` (current) directory. 
 A default JSON file named ``chronqc.default.json`` is also created in chronqc_db under the ``.`` (current) directory.
 
 Step 2: Update existing ChronQC database
@@ -128,7 +128,7 @@ Interactive html report is created in ``chronqc_output`` under the ``.`` (curren
 
 *Customizing the JSON*
 
-It is strongly adviced to create custom JSON file, based on the laboratories assay tracking strategy. A sample of custom JSON is included in the folder. `chronqc.stats.cols.txt` file contains column names present in the database, and can be used to create the config file. For details on creating the config file visit `documentation. <http://chronqc.readthedocs.io/en/latest/plots/plot_options.html>`__
+It is strongly adviced to create custom JSON file, based on the laboratories assay tracking strategy. A sample of custom JSON is included in the folder. `chronqc.stats.cols.txt` file contains column names present in the database, and can be used to create the config file. For details on creating the `config . <http://chronqc.readthedocs.io/en/latest/run_chronqc.html#chronqc-config-files>`__ file visit `documentation. <http://chronqc.readthedocs.io/en/latest/plots/plot_options.html>`__
 
 .. code-block:: shell    
 
