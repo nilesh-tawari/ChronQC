@@ -6,16 +6,23 @@ Generating ChronQC plots
 ````````````````````````
 
 ChronQC plots can be generated from,
-.. contents::
+
+.. contents:: **Table of Contents**
+
+
 
 1. A custom SQLite database
 ===========================
    
 This example demonstrates generating ChronQC plots from a custom database::
 
-.. code-block:: shell    
+.. code-block:: shell
+
  cd examples/custom_db_example
+ 
 ..
+
+
 Run following command to generate interactive plots in html::
 
 .. code-block:: shell    
