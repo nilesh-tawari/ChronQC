@@ -9,7 +9,7 @@ Run following command to generate interactive plots in HTML
 `chronqc plot chronqc_custom_db.sqlite Somatic config.json`
 
 The types of created plots and their properties are specified in "config.json" file. For details on creating the [config](http://chronqc.readthedocs.io/en/latest/run_chronqc.html#chronqc-config-files) file visit [documentation](https://chronqc.readthedocs.io/en/latest/plots/plot_options.html).
-Interactive html report is created under `chronqc_output`.
+Interactive html report is created under `chronqc_output` directory.
 
 # Example of running ChronQC using **Non-NGS** custom SQLite database
 ---------------------------------------------------------------------
@@ -28,7 +28,7 @@ Run following command to generate interactive plots in HTML,
 
 `chronqc plot chronqc_custom_PCR_db.sqlite ENTROGEN PCR_config_demo.json`
 
-The types of created plots and their properties are specified in "PCR_config_demo.json" file. For details on creating the `config . <http://chronqc.readthedocs.io/en/latest/run_chronqc.html#chronqc-config-files>`__ file visit `documentation. <http://chronqc.readthedocs.io/en/latest/plots/plot_options.html>`__
+The types of created plots and their properties are specified in "PCR_config_demo.json" file. For details on creating the [config](http://chronqc.readthedocs.io/en/latest/run_chronqc.html#chronqc-config-files) file visit [documentation](http://chronqc.readthedocs.io/en/latest/plots/plot_options.html)
 Interactive html report is created under ``chronqc_output`` directory.
 
 # Using the ChronQC plots
