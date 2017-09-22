@@ -42,7 +42,7 @@ Examples
 ChronQC plots can be generated from,
 
 1. A custom SQLite database. 
-	* For example see, `examples/custom_db_example <https://github.com/nilesh-tawari/ChronQC/tree/master/examples/custom_db_example>`_.
+	* For examples see, `examples/custom_db_example <https://github.com/nilesh-tawari/ChronQC/tree/master/examples/custom_db_example>`_.
 
 2. The output of `MultiQC <https://github.com/ewels/MultiQC>`__. 
 	* For example on creating the ChronQC database and plots see, `examples/multiqc_example_1 <https://github.com/nilesh-tawari/ChronQC/tree/master/examples/multiqc_example_1>`_.

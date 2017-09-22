@@ -32,6 +32,33 @@ The types of created plots and their properties are specified in "config.json" f
 Interactive html report is created under ``chronqc_output`` directory
 
 
+Using **Non-NGS** custom SQLite database
+----------------------------------------
+   
+This example demonstrates application of ChronQC time-series monitoring in non-NGS assay. This example generates plots for ENTROGEN PCR-based assay data. The example below utilizes 2 types of plots:
+
+* A `stacked plot <http://chronqc.readthedocs.io/en/latest/plots/time_series_with_stacked_bar_plot.html>`_ that shows the total number of mutations present in samples ran with the PCR-based assay very month. Each bar indicates the total occurences of variants of mutants (KRAS, BRAF, WT) per month.
+
+* Ct values of positive control are monitored using the `absolute threshold plot <http://chronqc.readthedocs.io/en/latest/plots/timeseries_absolute_threshold.html>`_ which visualizes FAM / VIC Ct values with validated upper and lower thresholds. Stable Ct values in positive controls indicates that each run is valid and the reagents and protocol are stable.
+
+.. code-block:: shell
+
+ cd examples/custom_db_example
+
+..
+
+
+Run following command to generate interactive plots in HTML,
+
+.. code-block:: shell   
+
+ chronqc plot chronqc_custom_PCR_db.sqlite ENTROGEN PCR_config_demo.json  
+ 
+..
+
+The types of created plots and their properties are specified in "PCR_config_demo.json" file. For details on creating the `config . <http://chronqc.readthedocs.io/en/latest/run_chronqc.html#chronqc-config-files>`__ file visit `documentation. <http://chronqc.readthedocs.io/en/latest/plots/plot_options.html>`__
+Interactive html report is created under ``chronqc_output`` directory.
+
 Using the output of MultiQC
 ---------------------------
 
