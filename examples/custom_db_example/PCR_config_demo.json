@@ -19,8 +19,7 @@
 	  "y_value": "FAM",
 	  "lower_threshold": "29.11",
 	  "upper_threshold": "34.49",
-      "y_label": "PC FAM Ct",
-	  "per_sample": "True"
+      	  "y_label": "PC FAM Ct"
   }
  },
    {
@@ -32,8 +31,7 @@
       "y_value": "VIC",
 	  "lower_threshold": "28.62",
 	  "upper_threshold": "35.11",
-      "y_label": "PC VIC Ct",
-	  "per_sample": "True"
+          "y_label": "PC VIC Ct"
   }
  }
 ]
