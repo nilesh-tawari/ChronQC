@@ -43,6 +43,8 @@ Example live ChronQC report
     :caption: ChronQC Set up
 
     chronqc_setup.rst
+    automate_chronqc.rst
+    
 
 .. toctree::
     :maxdepth: 2

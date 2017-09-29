@@ -90,6 +90,12 @@ If you would like the development version instead, the command is::
 	pip install --upgrade --force-reinstall git+https://github.com/nilesh-tawari/ChronQC.git
 
 
+
+Automation
+==========
+
+* For details on how to automate ChronQC plot generation see, `automate_chronqc <https://github.com/nilesh-tawari/ChronQC/tree/master/automate_chronqc>`_.
+
 Citation
 ========
 

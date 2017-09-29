@@ -1,0 +1,89 @@
+[
+  {
+  "table_name": "PCR__smp_mutant_stats",
+  "include_samples": "all",
+  "chart_type": "time_series_with_stacked_bar_plot",
+  "chart_properties": {
+       "chart_title": "EntroGen: Mutation Stacked plot (KRAS, BRAF, WT)",
+       "y_value": "Mutant",
+       "categories": "KRAS, BRAF, WT",
+       "y_label": "Number of samples(s)"
+   }
+  },
+   {
+  "table_name": "PCR__pc_ct_stats",
+  "include_samples": "all",
+  "chart_type": "time_series_with_absolute_threshold",
+  "chart_properties": {
+      "chart_title": "EntroGen: Positive Control FAM Ct Value (per run)",
+	  "y_value": "FAM",
+	  "lower_threshold": "29.11",
+	  "upper_threshold": "34.49",
+      "y_label": "PC FAM Ct"
+  }
+ },
+   {
+  "table_name": "PCR__pc_ct_stats",
+  "include_samples": "all",
+  "chart_type": "time_series_with_absolute_threshold",
+  "chart_properties": {
+   "chart_title": "EntroGen: Positive Control VIC Ct Value (per run)",
+      "y_value": "VIC",
+	  "lower_threshold": "28.62",
+	  "upper_threshold": "35.11",
+      "y_label": "PC VIC Ct"
+  }
+ },
+ {
+  "table_name": "PCR__pc_ct_stats",
+  "include_samples": "all",
+  "chart_type": "time_series_with_absolute_threshold",
+  "chart_properties": {
+      "chart_title": "EntroGen: Positive Control FAM Ct Value (per sample)",
+	  "y_value": "FAM",
+	  "lower_threshold": "29.11",
+	  "upper_threshold": "34.49",
+      "y_label": "PC FAM Ct",
+	  "per_sample": "True"
+  }
+ },
+   {
+  "table_name": "PCR__pc_ct_stats",
+  "include_samples": "all",
+  "chart_type": "time_series_with_absolute_threshold",
+  "chart_properties": {
+   "chart_title": "EntroGen: Positive Control VIC Ct Value (per sample)",
+      "y_value": "VIC",
+	  "lower_threshold": "28.62",
+	  "upper_threshold": "35.11",
+      "y_label": "PC VIC Ct",
+	  "per_sample": "True"
+  }
+ },
+   {
+  "table_name": "PCR__pc_ct_stats",
+  "include_samples": "all",
+  "chart_type": "time_series_with_box_whisker_plot",
+  "chart_properties": {
+      "chart_title": "EntroGen: Positive Control FAM Ct Value (per month)",
+	  "y_value": "FAM",
+	  "Type": "Sample",
+	  "lower_threshold": "28.62",
+	  "upper_threshold": "35.11",
+      "y_label": "PC FAM Ct"
+  }
+ },
+   {
+  "table_name": "PCR__pc_ct_stats",
+  "include_samples": "all",
+  "chart_type": "time_series_with_box_whisker_plot",
+  "chart_properties": {
+   "chart_title": "EntroGen: Positive Control VIC Ct Value (per month)",
+      "y_value": "VIC",
+	  "Type": "Sample",
+	  "lower_threshold": "28.62",
+	  "upper_threshold": "35.11",
+      "y_label": "PC VIC Ct"
+  }
+ }
+]
