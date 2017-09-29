@@ -42,9 +42,7 @@ Example live ChronQC report
     :maxdepth: 2
     :caption: ChronQC Set up
 
-    chronqc_setup.rst
-    automate_chronqc.rst
-    
+    chronqc_setup.rst  
 
 .. toctree::
     :maxdepth: 2
@@ -64,6 +62,12 @@ Example live ChronQC report
     plots/timeseries_percentage_category
     plots/time_series_with_stacked_bar_plot
     plots/time_series_with_bar_line_plot
+
+.. toctree::
+    :maxdepth: 2
+    :caption: Automating ChronQC
+    
+    automate_chronqc.rst
     
 .. toctree::
     :maxdepth: 2
