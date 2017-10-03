@@ -21,7 +21,7 @@
     	document.getElementById("$divname"),
 		$dataname,
 		{
-			labels: [ "Date", "Scatter"],
+			labels: [ "Date", "$ylabel"],
 			drawPoints: true,
 			strokeWidth: 0.0,
 			labelsDiv: document.getElementById("$labeldiv"),
@@ -51,10 +51,10 @@
 						run = $runname[row],
 						sample = $samplename[row];
 						
-						text = "<b>Run ID: </b>".fontcolor("#800000") + run[0] 
-								+ "<br/><b>Sample ID (y-value): </b>".fontcolor("#008080") + "<font size='-1.5'>" + sample + "</font>" 
-								+ "<br><b>Date:</b> ".fontcolor("#800080") + moment(d).format("DD/MM/YYYY") 
-								+ "<br/><b>$ylabel: </b>".fontcolor("#000080") + data
+						text = "<b>Run ID: </b>".fontcolor("#000") + run[0] 
+								+ "<br/><b>Sample ID (y-value): </b>".fontcolor("#000") + "<font size='-1.5'>" + sample + "</font>" 
+								+ "<br><b>Date:</b> ".fontcolor("#000") + moment(d).format("DD/MM/YYYY") 
+								+ "<br/><b>$ylabel: </b>".fontcolor("#0080ff") + data
 						
 						
 						if (run[1].length == 0){return text}
@@ -67,7 +67,7 @@
 				},
 			},
 			series: {
-				"Scatter" : {
+				"$ylabel" : {
 					strokeWidth: 0,
 					pointSize: 3,
 					color: "#0080ff"
@@ -114,7 +114,8 @@
 				date = $dataname[point.idx][0];
 				date =  moment(date).format("DD-MM-YYYY");
 				//copyToClipboard(run);
-				makeQuery(run,date);
+				chartid = "$chart_id"
+				makeQuery(run,date, chartid)
 			},
 		}
 	);

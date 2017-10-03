@@ -18,6 +18,7 @@ import json
 from datetime import date
 from dateutil.relativedelta import relativedelta
 import warnings
+import io
 try:
     from . import utils
 except (ValueError, SystemError, ImportError):
@@ -396,7 +397,7 @@ def stacked_bar_plot(df, column_name):
     return df_dup_all, df_dup_all_cumsum
     
     
-def create_dir(vals, df_chart, chart_id, chart_title, y_label, startdate, enddate, categories, ylabel2, df_chart_cumsum, per_sample):
+def create_dir(vals, df_chart, chart_id, chart_title, y_label, startdate, enddate, categories, ylabel2, df_chart_cumsum, per_sample, column_name):
     '''
     df, dir -> dir
     '''
@@ -439,6 +440,7 @@ def create_dir(vals, df_chart, chart_id, chart_title, y_label, startdate, enddat
     # for per_sample
     vals[chart_id + 'htmltemplates']['id_perSample_bool'] = per_sample
     vals[chart_id + 'htmltemplates']['id_perSample'] =  chart_id + '_per_sample'
+    vals[chart_id + 'htmltemplates']['download_title'] =  column_name
     
     return vals
 
@@ -454,6 +456,19 @@ def process_y(column_name):
     """
     # .replace('percent', '%').replace('pct', '%')
     return column_name.replace('_', ' ').title().replace('Percent Gc', '% GC Content').replace('Tstv', 'Ts/Tv')
+
+
+def process_title(column_name):
+    """
+    (str) -> str
+    Do following processing in string
+    1. replace _ with ""
+    2. replace percent with %
+    3. replace pct with %
+    4. capitalize words
+    """
+    # .replace('percent', '%').replace('pct', '%')
+    return column_name.replace(' ', '_').replace('>=', 'ge').replace('<=', 'le').replace('>', 'gt').replace('/', '_').replace('<', 'lt').replace('(', '').replace(')', '').replace('[', '').replace(']', '').replace(',', '').replace('%', 'Percent')
 
 
 ###############################################################################
@@ -517,16 +532,16 @@ def main(args):
     # add ch to logger
     logger.addHandler(ch)
     logger.info("Started chronqc {0}".format(day))
-
     # read plot config
-    with open(op.abspath(args.json), 'r') as f:
-        try:
-            config = json.load(f)
-            logger.info("Got required parameters for chronqc")
-        except ValueError:
-            e = sys.exc_info()[1]
-            logger.critical("FATAL: Error in JSON file {0}:{1}".format(e, op.abspath(args.json)))
-            sys.exit(1)
+    f = op.abspath(args.json)
+    try:
+        config = json.load(io.open(f, 'r', encoding = 'utf-8-sig'),strict=False)
+        logger.info("Got required parameters for chronqc")
+    except ValueError:
+        e = sys.exc_info()[1]
+        logger.critical("FATAL: Error in JSON file {0}:{1}".format(e, op.abspath(args.json)))
+        sys.exit(1)
+
     # enddate = date.today() + relativedelta(months=+1)
     # enddate = enddate.strftime('%Y-%m-%d')
 # Create dictionary of data tobe filled in html file
@@ -534,7 +549,9 @@ def main(args):
     vals = {'htmltemplates': '', 'calendartemplates': '',
             'javascripttemplate': '', 'sidebartemplates': '',
             'j': '$j', 'panel': panel, 'startdate': '$startdate',
-            'enddate': '$enddate', 'datetime': datetime, 'pdfname': '$pdfname'}
+            'enddate': '$enddate', 'datetime': datetime, 'pdfname': '$pdfname', 
+            'table': '$table','headers': '$headers', 'rows':'$rows', 'row':'$row', 
+            'cols':'$cols', 'col':'$col', 'text':'$text'}
     i = 1
     chart_ids = []
     group_ids = {}
@@ -755,8 +772,9 @@ def main(args):
             logger.critical("For {0}: No suitable chart_type is defined check JSON".format(chart_id))
             sys.exit(1)
         # keep data in dir
+        download_title = process_title(chart_title)
         vals = create_dir(vals, df_chart, chart_id, chart_title, y_label,
-                          startdate, enddate, categories=category_str, ylabel2=ylabel2, df_chart_cumsum=df_chart_cumsum, per_sample=per_sample)
+                          startdate, enddate, categories=category_str, ylabel2=ylabel2, df_chart_cumsum=df_chart_cumsum, per_sample=per_sample, column_name=download_title)
         # html template
         html_tmpl = string.Template(open(op.join(templates_dir, "html.txt")).read())
         vals[chart_id + '_html'] = html_tmpl.substitute(**vals[chart_id + 'htmltemplates'])
@@ -775,7 +793,7 @@ def main(args):
     vals['pdfname'] = "%s.pdf" % prefix
     # substitute vals in main template
     tmpl = string.Template(tmpl).substitute(**vals)
-    with open(out_file, "w") as fh:
+    with io.open(out_file, "w", encoding='utf8') as fh:
         fh.write(tmpl)
     logger.info("Finished creating {0} chronqc plots: {1}".format(i-1, out_file))
     print("Finished creating {0} chronqc plots: {1}".format(i-1, out_file))

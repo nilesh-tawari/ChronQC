@@ -55,7 +55,7 @@
 						var text = [], 
 						data = $label_dataname[row],
 						
-						text = "<br><b>Month:</b> ".fontcolor("#800080") + moment(d).format("MMMM YYYY") 
+						text = "<br><b>Month:</b> ".fontcolor("#000") + moment(d).format("MMMM YYYY") 
 						for (i=1;i<$graphvar_labels.length+1; i++){
 							if(i==$graphvar_labels.length){text = text + "<br><b>Total Mutations:</b> ".fontcolor("#000000") + data[i] }
 							else {

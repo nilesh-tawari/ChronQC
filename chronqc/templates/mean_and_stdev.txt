@@ -21,7 +21,7 @@
 		document.getElementById("$divname"),
 		$dataname,	
 		{
-			labels: [ "Date","Lower" , "Mean", "Upper", "Scatter"],
+			labels: [ "Date","\xB12 Standard Deviation" , "Mean", "\xB12 Standard Deviation", "$ylabel"],
 			labelsDiv: document.getElementById("$labeldiv"),
 			labelsSeparateLines: true,
 			legend: "always",
@@ -51,19 +51,19 @@
 						sample = $samplename[row];
 						
 						if($id_perSample ==  "True"){
-							text = "<b>Sample ID: </b>".fontcolor("#800000") + run[col] 
-									+ "<br/><b>Run ID: </b>".fontcolor("#008080") + "<font size='-1.5'>" + sample + "</font>" 
-									+ "<br><b>Date:</b> ".fontcolor("#800080") + moment(d).format("DD/MM/YYYY") 
+							text = "<b> Sample ID: </b>".fontcolor("#000") + run[col] 
+									+ "<br/><b> Run ID: </b>".fontcolor("#000") + "<font size='-1.5'>" + sample + "</font>" 
+									+ "<br><b> Date:</b> ".fontcolor("#000") + moment(d).format("DD/MM/YYYY") 
 									+ "<br/><b> Mean: </b>".fontcolor("#006400") + data[2]   
-									+ "<br/><b> 2SD: </b>".fontcolor("#ff0000") + data[1] + ' - ' + data[3]  
-									+ "<br/><b> $ylabel: </b>".fontcolor("#000080") + data[4] + '</font>'
+									+ "<br/><b> &plusmn;2 Standard Deviation: </b>".fontcolor("#ff0000") + data[1] + "-" + data[3]  
+									+ "<br/><b> $ylabel: </b>".fontcolor("#0080ff") + data[4] + '</font>'
 						}else{
-							text = "<b>Run ID: </b>".fontcolor("#800000") + run[col] 
-									+ "<br/><b>Sample ID (y-value): </b>".fontcolor("#008080") + "<font size='-1.5'>" + sample + "</font>" 
-									+ "<br><b>Date:</b> ".fontcolor("#800080") + moment(d).format("DD/MM/YYYY") 
-									+ "<br/><b> Mean: </b>".fontcolor("#006400") + data[2]   
-									+ "<br/><b> 2SD: </b>".fontcolor("#ff0000") + data[1] + ' - ' + data[3]  
-									+ "<br/><b> $ylabel: </b>".fontcolor("#000080") + data[4] + '</font>'
+							text = "<b>Run ID: </b>".fontcolor("#000") + run[col] 
+									+ "<br/><b>Sample ID (y-value): </b>".fontcolor("#000") + "<font size='-1.5'>" + sample + "</font>" 
+									+ "<br><b>Date:</b> ".fontcolor("#000") + moment(d).format("DD/MM/YYYY") 
+									+ "<br/><b> Mean: </b>".fontcolor("#006400") + data[2]      
+									+ "<br/><b> &plusmn;2 Standard Deviation: </b>".fontcolor("#ff0000") + data[1] + "-" + data[3]    
+									+ "<br/><b> $ylabel: </b>".fontcolor("#0080ff") + data[4] + '</font>'
 						}
 						
 						if (run[1].length != 0){
@@ -77,7 +77,7 @@
 				},	
 			},
 			series: {
-				"Lower" : {
+				"\xB12 Standard Deviation" : {
 					strokePattern: Dygraph.DASHED_LINE ,
 					color: "#ff0000",
 					strokeWidth: 2,
@@ -87,12 +87,7 @@
 					color: "#006400",
 					strokeWidth: 2,
 				},
-				"Upper": {	
-					strokePattern: Dygraph.DASHED_LINE ,
-					color: "#ff0000",
-					strokeWidth: 2, 
-				},
-				"Scatter" : {
+				"$ylabel" : {
 					drawPoints: true,
 					color: "#0080ff",
 					pointSize: 3,
@@ -142,7 +137,8 @@
 				date = $dataname[point.idx][0]
 				date =  moment(date).format("DD-MM-YYYY")
 				//copyToClipboard(run)
-				makeQuery(run,date)
+				chartid = "$chart_id"
+				makeQuery(run,date, chartid)
 			},
 		}
 	);
