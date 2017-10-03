@@ -641,8 +641,8 @@ def main(args):
             logger.info("For {0}: {1} data points will be written to html".format(chart_id, len(df_chart)))
         elif chart['chart_type'] == 'time_series_with_percentage_of_samples_above_threshold':
             threshold = chart["chart_properties"]["threshold"]
-            t = '% Samples per run with {0} &ge; {1}'.format(y, threshold)
-            y = '% {0} &ge; {1}'.format(y, threshold)
+            t = '% Samples per run with {0} ≥ {1}'.format(y, threshold)
+            y = '% {0} ≥ {1}'.format(y, threshold)
             chart_title = chart["chart_properties"].get('chart_title', t)
             y_label = chart["chart_properties"].get('y_label', y)
             js_tmpl = string.Template(open(op.join(templates_dir, "percent_plot_threshold.txt")).read())
@@ -662,10 +662,10 @@ def main(args):
             if win == '365D':
                 winf = "past 1 year {}s".format(info)
             if per_sample == 'False':
-                t = '{0} (Mean per run with {1} rolling mean and &plusmn2 standard deviation)'.format(y, winf)
+                t = '{0} (Mean per run with {1} rolling mean and ±2 standard deviation)'.format(y, winf)
                 y = '{0} (Mean per run)'.format(y)
             else:
-                t = '{0} (with {1} rolling mean and &plusmn2 standard deviation)'.format(y, winf)
+                t = '{0} (with {1} rolling mean and ±2 standard deviation)'.format(y, winf)
                 y = '{0}'.format(y)
             chart_title = chart["chart_properties"].get('chart_title', t)
             y_label = chart["chart_properties"].get('y_label', y)

@@ -6,10 +6,10 @@
 	for (j = 0; j < $dataname.length; j++){
 		$dataname[j][0] = new Date($dataname[j][0])
 	}
-	for (j = 0; j < $runname.length; j++){
+	for (j = 0; j < $samplename.length; j++){
 		for (i = 0; i < obj.length; i++){
 			var ann = obj[i]
-			if(ann.Run == $runname[j][0]){
+			if(ann.Run == $samplename[j]){
 				$runname[j][1]=ann.Annotation
 			}else{}
 		}
@@ -51,8 +51,8 @@
 						run = $runname[row],
 						sample = $samplename[row];
 						
-						text = "<b>Run ID: </b>".fontcolor("#000") + run[0]
-								+ "<br/><b>Sample ID: </b>".fontcolor("#000") + "<font size='-1.5'>" + sample + "</font>"
+						text = "<b>Sample ID: </b>".fontcolor("#000") + "<font size='-1.5'>" + sample + "</font>"
+								+ "<br><b>Run ID: </b>".fontcolor("#000") + run[0]
 								+ "<br><b>Month:</b> ".fontcolor("#000") + moment(d).format("MMMM") 
 								+ "<br><b>1st Quantile:</b> ".fontcolor("#4DD8AD") + data[1]
 								+ "<br><b>3rd Quantile:</b> ".fontcolor("#A3586D") + data[2]  
@@ -153,7 +153,7 @@
 			pointClickCallback: function(e, point) {
 				if($dataname[point.idx][6] == null)return;
 				else{
-					run = $runname[point.idx][0]
+					run = $samplename[point.idx]
 					date = $dataname[point.idx][0]
 					date =  moment(date).format("DD-MM-YYYY")
 					//copyToClipboard(run)
