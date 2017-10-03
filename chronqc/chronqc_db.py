@@ -288,8 +288,8 @@ def main(args):
         if len(num_cols) > 0:
             for col in num_cols:
                 default_json.append(json.loads(mstd.format(table_name, col)))  
-        with open(out_json, 'w') as out_json:
-            json.dump(default_json, out_json, sort_keys = False, indent = 4,
+        with open(out_json, 'w') as out_json_file:
+            json.dump(default_json, out_json_file, sort_keys = False, indent = 4,
                ensure_ascii = False) 
         logger.info("Created ChronQC db: {0} with {1} records".format(out_file, len(df)))
         logger.info("Created ChronQC default JSON file: {0}. Customize the JSON as needed before generating ChronQC plots.".format(out_json))
