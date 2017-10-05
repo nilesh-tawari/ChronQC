@@ -60,11 +60,17 @@ def main(args):
         print("Enter")
         todate = date.today().strftime('%Y-%m-%d')
         annotation = '{0} : {1}'.format(todate, annotation)
-        mycursor.execute("UPDATE Run_Annotations SET Annotation = Annotation || '<br>' || ? , Status = ?, GraphID = ?, Date1 = ?, Date2 = ? WHERE Run = ? and Panel = ?;", (annotation.decode('utf8'),status,chartid,startdate,enddate,Runname,Panel))
+        try:
+            mycursor.execute("UPDATE Run_Annotations SET Annotation = Annotation || '<br>' || ? , Status = ?, GraphID = ?, Date1 = ?, Date2 = ? WHERE Run = ? and Panel = ?;", (annotation,status,chartid,startdate,enddate,Runname,Panel))
+        except:
+            mycursor.execute("UPDATE Run_Annotations SET Annotation = Annotation || '<br>' || ? , Status = ?, GraphID = ?, Date1 = ?, Date2 = ? WHERE Run = ? and Panel = ?;", (annotation.decode("utf-8"),status,chartid,startdate,enddate,Runname,Panel))        
         connection.commit()
         print(mycursor.rowcount, " rows")
         if mycursor.rowcount == 0:
-            mycursor.execute("Insert into Run_Annotations (Annotation, Run, Panel, Status, GraphID, Date1, Date2) values(?,?,?,?,?,?,?);", (annotation.decode('utf8'), Runname, Panel, status,chartid,startdate,enddate))
+            try:
+                mycursor.execute("Insert into Run_Annotations (Annotation, Run, Panel, Status, GraphID, Date1, Date2) values(?,?,?,?,?,?,?);", (annotation, Runname, Panel, status,chartid,startdate,enddate))
+            except:    
+                mycursor.execute("Insert into Run_Annotations (Annotation, Run, Panel, Status, GraphID, Date1, Date2) values(?,?,?,?,?,?,?);", (annotation.decode("utf-8"), Runname, Panel, status,chartid,startdate,enddate))
             connection.commit()
         return
 
@@ -73,8 +79,10 @@ def main(args):
 
     @route('/datedataQuery/<Date>/<Panel>/<Notes>')
     def myDateQuery(Date, Panel, Notes):
-        mycursor.execute('''INSERT INTO Date_Annotations (Annotated_date, Notes, Panel)
-                        VALUES (?,?,?);''', (Date, Notes,Panel))
+        try:
+            mycursor.execute('''INSERT INTO Date_Annotations (Annotated_date, Notes, Panel) VALUES (?,?,?);''', (Date, Notes,Panel))
+        except:
+            mycursor.execute('''INSERT INTO Date_Annotations (Annotated_date, Notes, Panel) VALUES (?,?,?);''', (Date, Notes.decode("utf-8"),Panel))
         connection.commit()
         return
 

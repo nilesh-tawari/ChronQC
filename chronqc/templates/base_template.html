@@ -551,23 +551,6 @@
   </div>
 </div>
 
-<div id="ann_added" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-sm">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-	<div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Annotation added!</h4>
-        </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div>
 
 
 	<div class="modal fade" id="myModalHorizontal" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
@@ -754,12 +737,12 @@
                     csv += formatRows($rows.map(grabRow)) + '"';
 
                     // Data URI
-                    var csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+                    var csvData = 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(csv);
 
                 // For IE (tested 10+)
                 if (window.navigator.msSaveOrOpenBlob) {
                     var blob = new Blob([decodeURIComponent(encodeURI(csv))], {
-                        type: "text/csv;charset=utf-8;"
+                        type: "data:text/csv;charset=utf-8,%EF%BB%BF"
                     });
                     navigator.msSaveBlob(blob, filename);
                 } else {
@@ -767,7 +750,7 @@
                         .attr({
                             'download': filename
                             ,'href': csvData
-                            //,'target' : '_blank' //if you want it to open in a new window
+                            ,'target' : '_blank' //if you want it to open in a new window
                     });
                 }
 
@@ -791,31 +774,21 @@
                     return $cols.map(grabCol)
                                 .get().join(tmpColDelim);
                 }
-                // Grab and format a column from the table
                 function grabCol(j,col){
                     var $col = jQuery(col);
 					if (jQuery(col).prop("tagName")=="TD"){
-						jQuery(col).find("br").replaceWith("; ");
+						jQuery(col).find("br").replaceWith("<br>\n ");
 					}
                     var $text = jQuery(col).text();
-                    return $text.replace('"', '""'); // escape double quotes
+                    return $text.replace('"', '""');
 
                 }
             }
-
-
-		// This must be a hyperlink
+		
 		jQuery("#exporttocsv").on('click', function(event) {
-			// CSV
-
 				var args = [jQuery('#SummaryTable>table'), 'Chronqc_' + panelname + '_Summary_Table.csv'];
 				exportTableToCSV.apply(this, args);
-
-		// If CSV, don't do event.preventDefault() or return false
-		// We actually need this to be a typical hyperlink
 		});
-
-
         var scrolling = null;
 
         function scroll_up() {
@@ -1286,6 +1259,13 @@
                 }
             }
         }
+		
+		function stateChange(newState) {
+			setTimeout(function(){
+				if(newState == -1){window.location.reload(true);}
+			}, 250);
+		}
+		
         ////////////////////////////////////////////////////////////////////////////////////////
         // Multiple column bar chart
         function multiColumnBarPlotter(e) {
@@ -1348,9 +1328,9 @@
 
 		function toDateDate(dateStr) {
 			dateStr = dateStr.replace(/\//g, '-').replace(/\./g, '-').replace(/,/g, '-')
-			console.log(dateStr)
 			const [year, month, day] = dateStr.split("-")
-			if  (( year == undefined || year < 1000 || year > 3000) || (month== undefined||month < 1 || month >12) || ( day==undefined || day < 00 || day > 31 )) {
+			var date = new Date(dateStr)
+			if  (date=="Invalid Date" || ( year == undefined || year < 1000 || year > 3000) || (month== undefined||month < 1 || month >12) || ( day==undefined || day < 00 || day > 31 )) {
 				p = "Please valid date in YYYY-MM-DD format"
 				$j(".modal .modal-body #invaliddatemodalp").html( p );
 				$j('#invaliddatemodal').modal("show");
@@ -1384,10 +1364,11 @@
                 annotation = annotation.replace(/\\/g, '&slashbackback');
                 annotation = annotation.replace(/\//g, '&backslash');
                 $j.get("http://localhost:8000/dataQuery/" + runname + "/" + panelname + "/" + dbstatus + "/" + chartid + "/" + startdate + "/" + enddate + "/" + annotation, function(result) {})
-                $j('#ann_added').modal("show");
+                /*$j('#ann_added').modal("show");
                 $j('#ann_added').on('hidden.bs.modal', function () {
 					window.location.reload(true);
-				})
+				})*/
+				state = stateChange(-1)
 
 			}
        }
@@ -1478,10 +1459,7 @@
                 Notes = Notes.replace(/\//g, 'backslash');
                 Notes = Notes.replace(/\\/g, 'slashbackback');
                 $j.get("http://localhost:8000/datedataQuery/" + Date + "/" + panelname + "/" + Notes, function(result) {})
-                $j('#ann_added').modal("show");
-				$j('#ann_added').on('hidden.bs.modal', function () {
-					window.location.reload(true);
-				})
+                state = stateChange(-1)
             }
 		}
 
