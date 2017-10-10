@@ -74,3 +74,9 @@ Example live ChronQC report
     :caption: Citation
 
     citation.rst
+ 
+.. toctree::
+    :maxdepth: 2
+    :caption: FAQs
+    
+    faqs.rst
