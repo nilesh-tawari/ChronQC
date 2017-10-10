@@ -468,7 +468,7 @@ def process_title(column_name):
     4. capitalize words
     """
     # .replace('percent', '%').replace('pct', '%')
-    return column_name.replace(' ', '_').replace('>=', 'ge').replace('<=', 'le').replace('>', 'gt').replace('/', '_').replace('<', 'lt').replace('(', '').replace(')', '').replace('[', '').replace(']', '').replace(',', '').replace('%', 'Percent')
+    return column_name.replace(' ', '_').replace('>=', 'ge').replace('<=', 'le').replace('>', 'gt').replace('/', '_').replace('<', 'lt').replace('(', '').replace(')', '').replace('[', '').replace(']', '').replace(',', '').replace('%', 'Percent').replace('≥', 'ge').replace('≤', 'le')
 
 
 ###############################################################################
