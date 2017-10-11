@@ -1,7 +1,7 @@
 ChronQC Plots
 `````````````
 
-ChronQC currently supports seven types of charts. The different chart types are associated with different QC tracking features based on Westgard rules for clinical validity (e.g. demarcating ±2 standard deviations) (Westgard, J.O. et al. 1981), laboratory-defined thresholds, and historical QC observations within a specified period. ChronQC plots can assist in identifying trends, bias, and excessive scatter in the clinical data, so that corrective and preventive actions can be taken to ensure that patient results remain clinically valid. 
+ChronQC currently supports seven types of charts. The seven chart types were selected based on our experience as a CAP-accredited laboratory. The different chart types are associated with different QC tracking features based on Westgard rules for clinical validity (e.g. demarcating ±2 standard deviations) (Westgard, J.O. et al. 1981), laboratory-defined thresholds, and historical QC observations within a specified period. ChronQC plots can assist in identifying trends, bias, and excessive scatter in the clinical data, so that corrective and preventive actions can be taken to ensure that patient results remain clinically valid. 
 
 +------------------------------------------------------+-------------------------------------------------------------+-----------------------------------------------------------------------------------------------+
 | Chart type                                           | Description 				                     | Use case                                                                                      |
