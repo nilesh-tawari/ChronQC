@@ -89,7 +89,7 @@ If you would like the development version instead, the command is::
 
 	pip install --upgrade --force-reinstall git+https://github.com/nilesh-tawari/ChronQC.git
 
-Alternatively, ChronQC can also be used as Docker::
+Alternatively, ChronQC can also be used as `Docker <https://hub.docker.com/r/nileshtawari/chronqc/>`__.::
 
     #Pull docker image
     docker pull nileshtawari/chronqc:chronqc_1.0.3
@@ -100,7 +100,7 @@ Alternatively, ChronQC can also be used as Docker::
     #Test ChronQC using example data
     cd /home/ChronQC
     
-    Then follow instructions given in `getting started. <http://chronqc.readthedocs.io/en/latest/run_chronqc.html#generating-chronqc-plots>`__. 
+Then follow instructions given in `getting started <http://chronqc.readthedocs.io/en/latest/run_chronqc.html#generating-chronqc-plots>`__. 
 
 Automation
 ==========
