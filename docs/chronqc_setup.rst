@@ -44,7 +44,7 @@ Alternatively, ChronQC can also be used as `Docker <https://hub.docker.com/r/nil
     docker pull nileshtawari/chronqc:chronqc_1.0.3
    
     #Run docker
-    docker run -it --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix chronqc_1.0.3
+    docker run -it --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix nileshtawari/chronqc:chronqc_1.0.3
    
     #Test ChronQC using example data
     cd /home/ChronQC
