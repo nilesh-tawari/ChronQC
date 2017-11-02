@@ -25,6 +25,7 @@ You can install ChronQC from PyPI using pip as follows::
         conda config --add channels bioconda
         conda install -c bioconda chronqc
 ..
+
 Alternatively, you can install from GitHub::
 
     git clone https://github.com/nilesh-tawari/ChronQC_dev.git
@@ -35,5 +36,21 @@ Alternatively, you can install from GitHub::
 If you would like the development version instead, the command is::
 
     pip install --upgrade --force-reinstall git+https://github.com/nilesh-tawari/ChronQC_dev.git
+    
+
+Alternatively, ChronQC can also be used as Docker::
+
+    #Pull docker image
+    docker pull nileshtawari/chronqc:chronqc_1.0.3
+   
+    #Run docker
+    docker run -it chronqc_1.0.3
+   
+    #Test ChronQC using example data
+    cd /home/ChronQC
+    
+    Then follow instructions given in `getting started. <http://chronqc.readthedocs.io/en/latest/run_chronqc.html#generating-chronqc-plots>`__. 
+    
+    
 
 
