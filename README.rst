@@ -107,7 +107,7 @@ Then follow instructions given in `getting started <http://chronqc.readthedocs.i
   
 .. code-block:: shell
  
-  #(optional)Run docker again with mounted folder  
+  #(optional)Run docker with mounted folder  
   docker run -it --rm -e DISPLAY=$DISPLAY -u $(id -u) -v /tmp/.X11-unix:/tmp/.X11-unix -v /your_local_home_directory/your_data_directory:/data2 nileshtawari/chronqc:chronqc_1.0.3
 ..
     
