@@ -4,6 +4,7 @@ include chronqc/templates/*.txt
 include chronqc/templates/*.html
 include tox.ini
 include chronqc/config/chronqc.conf
+include chronqc/config/*.*
 include versioneer.py
 include chronqc/_version.py
 include chronqc/db/*

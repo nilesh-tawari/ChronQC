@@ -35,6 +35,14 @@ def run_annotation(args):
     #print("running chronqc_annotation")
     chronqc_annotation.main(args)
 
+
+def run_chrongen(args):
+    """
+    runs main function from chronqc_crongen.py
+    """
+    #print("running chronqc_annotation")
+    chronqc_crongen.main(args)
+
 class Highlander(argparse.Action):
     def __call__(self, parser, namespace, values, option_string=None):
         if getattr(namespace, self.dest, None) is not None:
@@ -147,6 +155,11 @@ def main():
         annotate_parser.add_argument('--port', required = False, action=Highlander, \
                         help='Four digit port number e.g. 8000. Default is 8000.')
         annotate_parser.set_defaults(func=run_annotation)
+        # automation
+        auto_parser = subparsers.add_parser('chrongen',
+                                            help='Use this option for automating ChronQC plot generation. \
+                                            Type "chronqc chrongen -h" for details on required arguments.')
+        auto_parser.add_argument('config_file', help='Path of configuration file for chrongen.', type=str)
 
         args = parser.parse_args()
         args.func(args)

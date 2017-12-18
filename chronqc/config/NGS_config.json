@@ -1,0 +1,260 @@
+[
+ {
+  "//": "SNP and TiTv plots",
+  "table_name": "NGS__SNPs_Indels_Stats_Summary",
+  "include_samples": "all",
+  "exclude_samples": "HCT15, NTC",
+  "chart_type": "time_series_with_box_whisker_plot",
+  "chart_properties": {
+   "chart_title": "XPLORA: Number of SNPs found in Samples Over Time (per month)",
+   "y_value": "Number",
+   "Type": "SNPs",
+   "y_label": "# of SNPs found in each sample"
+  }
+ }, 
+ {
+  "table_name": "NGS__SNPs_Indels_Stats_Summary",
+  "include_samples": "all",
+  "exclude_samples": "HCT15, NTC",
+  "chart_type": "time_series_with_box_whisker_plot",
+  "chart_properties": {
+   "chart_title": "XPLORA: Number of Indels found in Samples over Time (per month)",
+   "y_value": "Number",
+   "Type": "Indels",
+   "y_label": "# of Indels found in each sample"
+  }
+ },
+ {
+  "table_name": "NGS__Ti_Tv_Ratio_Stats",
+  "include_samples": "all",
+  "exclude_samples": "HCT15, NTC",
+  "chart_type": "time_series_with_mean_and_stdev",
+  "chart_properties": {
+   "chart_title": "XPLORA: Transition to Transversion Ratio of Samples (per run)",
+   "y_value": "Number",
+   "y_label": "TiTv ratio of sample",
+   "window" : 10
+  }
+ },
+{
+  "table_name": "NGS__SNPs_Indels_Stats_Summary",
+  "include_samples": "HCT15",
+  "chart_type": "time_series_with_mean_and_stdev",
+  "chart_properties": {
+   "chart_title": "XPLORA: Number of SNPs found in Positive Control (HCT15) Over Time (per run)",
+   "y_value": "Number",
+   "threshold": "SNPs",
+   "y_label": "# of SNPs found in each sample"
+  }
+ }, 
+ {
+  "table_name": "NGS__SNPs_Indels_Stats_Summary",
+  "include_samples": "HCT15",
+  "chart_type": "time_series_with_mean_and_stdev",
+  "chart_properties": {
+   "chart_title": "XPLORA: Number of Indels found in Positive Control (HCT15) over Time (per run)",
+   "y_value": "Number",
+   "threshold": "Indels",
+   "y_label": "# of Indels found in each sample"
+  }
+ },
+ {
+  "table_name": "NGS__Ti_Tv_Ratio_Stats",
+  "include_samples": "HCT15",
+  "chart_type": "time_series_with_mean_and_stdev",
+  "chart_properties": {
+   "chart_title": "XPLORA: Transition to Transversion Ratio of Postive control (HCT15) (per run)",
+   "y_value": "Number",
+   "y_label": "TiTv ratio of PC",
+   "window" : "365D"
+  }
+ },
+ {
+  "\\": "Production stats",
+  "table_name": "NGS__Production_Run_Stats_Summary",
+  "include_samples": "all",
+  "chart_type": "time_series_with_mean_and_stdev",
+  "chart_properties": {
+   "chart_title": "XPLORA: % Duplicates in On-target Sites (per run)",
+   "y_value": "Duplicates",
+   "y_label": "% Duplicates",
+   "window" : "365D"
+  }
+ },
+ {
+  "table_name": "NGS__Production_Run_Stats_Summary",
+  "include_samples": "all",
+  "chart_type": "time_series_with_mean_and_stdev",
+  "chart_properties": {
+   "chart_title": "XPLORA: Average Mapping Quality of On-target Sites (per run)",
+   "y_value": "MappingQuality",
+   "y_label": "Mapping Quality",
+   "window" : "365D"
+  }
+ },
+ {
+  "table_name": "NGS__Production_Run_Stats_Summary",
+  "include_samples": "all",
+  "chart_type": "time_series_with_absolute_threshold",
+  "chart_properties": {
+   "chart_title": "XPLORA: Average Base Quality Scored in On-target Sites (per run)",
+   "y_value": "BaseQuality",
+   "lower_threshold": 30,
+   "y_label": "Average Base Quality Score"
+  }
+ },
+ {
+  "\\": "Production stats",
+  "table_name": "NGS__Production_Run_Stats_Summary",
+  "include_samples": "all",
+  "chart_type": "time_series_with_mean_and_stdev",
+  "chart_properties": {
+   "chart_title": "XPLORA: Number of Bases In Reads within On-target Sites (per run)",
+   "y_value": "BasesOfReads",
+   "y_label": "Bases of Reads",
+   "window" : "365D"
+  }
+ },
+ {
+  "table_name": "NGS__Production_Run_Stats_Summary",
+  "include_samples": "all",
+  "chart_type": "time_series_with_mean_and_stdev",
+  "chart_properties": {
+   "chart_title": "XPLORA: % Bases in Reads within On-target Sites (per run)",
+   "y_value": "%BasesofReads",
+   "y_label": "% Bases of Reads",
+   "window" : "365D"
+  }
+ },
+  {
+  "table_name": "NGS__Production_Run_Stats_Summary",
+  "include_samples": "all",
+  "chart_type": "time_series_with_absolute_threshold",
+  "chart_properties": {
+   "chart_title": "XPLORA: Depth Median (per run)",
+   "y_value": "Depth",
+   "lower_threshold": 200,
+   "y_label": "Depth Median"
+  }
+ },
+  {
+  "table_name": "NGS__Production_Run_Stats_Summary",
+  "include_samples": "HCT15",
+  "chart_type": "time_series_with_absolute_threshold",
+  "chart_properties": {
+   "chart_title": "XPLORA: Depth Median of HCT15 (per run)",
+   "y_value": "Depth",
+   "lower_threshold": 90,
+   "y_label": "Depth Median"
+  }
+ },
+ {
+  "table_name": "NGS__Production_Run_Stats_Summary",
+  "include_samples": "all",
+  "chart_type": "time_series_with_mean_and_stdev",
+  "chart_properties": {
+   "chart_title": "XPLORA: GC Content % (per run)",
+   "y_value": "GCContent",
+   "y_label": "GC Content %",
+   "window" : "365D"
+  }
+ },
+ {
+  "table_name": "NGS__Production_Run_Stats_Summary",
+  "include_samples": "all",
+  "exclude_samples": "HCT15, NTC",
+  "chart_type": "time_series_with_percentage_category",
+  "chart_properties": {
+   "chart_title": "XPLORA: % of Samples that passed VCS QC (per run)",
+   "y_value": "vcs_coverage_qc",
+   "y_label": "% Samples in library",
+   "category": "PASS"
+  }
+ },
+ {
+  "table_name": "NGS__Production_Run_Stats_Summary",
+  "include_samples": "all",
+  "exclude_samples": "HCT15, NTC",
+  "chart_type": "time_series_with_percentage_of_samples_above_threshold",
+  "chart_properties": {
+   "chart_title": "XPLORA: % of Samples in run with >=200 depth (per run)",
+   "y_value": "Depth",
+   "y_label": "% Samples in run",
+   "threshold": "200"
+  }
+ },
+ {
+  "table_name": "NGS__VCS_Stats_Summary",
+  "include_samples": "all",
+  "exclude_samples": "HCT15, NTC",
+  "chart_type": "time_series_with_stacked_bar_plot",
+  "chart_properties": {
+       "chart_title": "XPLORA: VCS Stacked plot (KRAS, KIT, BRAF, NRAS, PDGFRA)",
+       "y_value": "Gene",
+       "categories": "KRAS, KIT, BRAF, NRAS, PDGFRA",
+       "y_label": "Number of samples(s)"
+    }
+  },
+   {
+  "//": "Sequencing plots",
+  "table_name": "NGS__HiSeq_Stats_Summary",
+  "include_samples": "all",
+  "chart_type": "time_series_with_absolute_threshold",
+  "chart_properties": {
+   "chart_title": "XPLORA: Cluster Density (per HiSeq flowcell)",
+   "y_value": "MeanClusterDensity",
+   "lower_threshold": 800,
+   "upper_threshold": 1200,
+   "y_label": "Cluster Density",
+   "per_sample": "True"
+  }
+ },
+ {
+  "table_name": "NGS__HiSeq_Stats_Summary",
+  "include_samples": "all",
+  "chart_type": "time_series_with_absolute_threshold",
+  "chart_properties": {
+   "chart_title": "XPLORA: % of Cluster Passing Filter (per HiSeq flowcell)",
+   "y_value": "MeanPFClusterDensity",
+   "lower_threshold": 90,
+   "y_label": "PassFilter %",
+   "per_sample": "True"
+  }
+ },
+ {
+  "table_name": "NGS__HiSeq_Stats_Summary",
+  "include_samples": "all",
+  "chart_type": "time_series_with_absolute_threshold",
+  "chart_properties": {
+   "chart_title": "XPLORA: Q30 Score (per HiSeq flowcell)",
+   "y_value": "Q30",
+   "lower_threshold": 90,
+   "y_label": "Q30 Score",
+   "per_sample": "True"
+  }
+ },
+ {
+  "table_name": "NGS__HiSeq_Stats_Summary",
+  "include_samples": "all",
+  "chart_type": "time_series_with_mean_and_stdev",
+  "chart_properties": {
+   "chart_title": "XPLORA: % Aligned on PhiX (per HiSeq flowcell)",
+   "y_value": "PhiXAlignment",
+   "y_label": "Alignment to PhiX",
+   "window" : "365D",
+   "per_sample": "True"
+  }
+ },
+ {
+  "table_name": "NGS__HiSeq_Stats_Summary",
+  "include_samples": "all",
+  "chart_type": "time_series_with_mean_and_stdev",
+  "chart_properties": {
+   "chart_title": "XPLORA: % Error Rate of PhiX (per HiSeq flowcell)",
+   "y_value": "ErrorRate",
+   "y_label": "Error Rate",
+   "window" : "365D",
+   "per_sample": "True"
+  }
+ }
+]

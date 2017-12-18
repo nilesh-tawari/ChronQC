@@ -1,10 +1,10 @@
-Automating ChronQC
-==================
+Automating ChronQC (chrongen)
+=============================
 ChronQC plot generation can be automated in two stages,
 
 1. Use "chronqc database" command as part of bioinformatics pipeline to update the ChronQC SQLite database (chronqc.stats.sqlite) with statistics . 
 
-2. The script "chronqc_crongen.py" Can be used for the automation of generation of ChronQC plots from a ChronQC statistics database (chronqc.stats.sqlite) or custom SQLite database. The database must contain information on sequencing runs, run dates, and laboratory or bioinformatics QC metrics. 
+2. The command "chronqc chrongen" can be used for the automation of generation of ChronQC plots from a ChronQC statistics database (chronqc.stats.sqlite) or custom SQLite database. The database must contain information on sequencing runs, run dates, and laboratory or bioinformatics QC metrics. 
 
 The settings for generating ChronQC plot can be specified in a configuration file (.ini). An email notification will be sent out to the users after the plots are generated. This script also generates a log event file to record the ChronQC commands that have been used.
 
@@ -16,7 +16,7 @@ Edit the configuration file with the panel name and json file name to generate C
 Requirements
 ============
 * Python 2.6 and above
-* `ChronQC 1.0.3 and above <https://github.com/nilesh-tawari/ChronQC>`_
+* `ChronQC 1.0.4 and above <https://github.com/nilesh-tawari/ChronQC>`_
 * `ChronQC json file <http://chronqc.readthedocs.io/en/latest/plots/plot_options.html>`_
 * crontab `configuration <https://crontab.guru/>`_
 
@@ -27,15 +27,14 @@ To run it, execute the command below:
 
 .. code-block:: shell
  
- cd automate_chronqc
- python chronqc_crongen.py <.ini configuration file>
+ chonqc crongen <.ini configuration file>
 
 ..
 
 To run it on crontab scheduler periodically (etc. every month):
 
 .. code-block:: 
- 0 0 1 * * python chronqc_crongen.py <.ini configuration file>
+ 0 0 1 * * chronqc crongen <.ini configuration file>
 ..
 
 I / O

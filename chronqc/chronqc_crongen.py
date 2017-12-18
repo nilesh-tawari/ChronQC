@@ -14,7 +14,7 @@ import argparse
 import logging
 import time
 import re
-
+import os.path as op
 import traceback
 
 try:
@@ -108,20 +108,23 @@ def compose_mail( link_dict, display_directory ):
         email_notice = email_notice % (notice_pts)
         utils.send_email(to_arr, from_arr, email_notice, subject, smtp_server)
 
-def main():
+def main(args):
 
 	global config_data
 	now = time.strftime("%c")
 
+	config_path = op.abspath(args.config_file)
+	output_directory, output_prefix = utils.path_leaf(config_path)
+
 	## parse input arguement
-	check_argument()
+	#check_argument()
 
         # read the config file
 	file = utils.custparser()
 	file.read(args.config_file)
 	config_data = file.as_dict()
 
-	logging.basicConfig(filename='./chronqc_crongen.log',level=logging.DEBUG)
+	logging.basicConfig(filename=op.join(output_directory, 'chronqc_crongen.log'),level=logging.DEBUG)
 	logging.info('STARTED crongen on %s' % now)
 
 	try:
@@ -152,5 +155,4 @@ def main():
 
 	logging.info('FINISHED without issues\n\n')
 
-if __name__ == "__main__":
-	main()
+

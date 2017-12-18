@@ -62,7 +62,7 @@ setup(
     ],
     test_suite='tests',
     tests_require=test_requirements,
-    package_data={'chronqc': ['templates/*.*', 'config/chronqc.conf',
+    package_data={'chronqc': ['templates/*.*', 'config/*.*',
                               'README.rst', 'versioneer.py',
                               'LICENSE', 'tox.ini', 'chronqc/_version.py',
                               'chronqc/db/*']}
