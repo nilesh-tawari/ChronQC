@@ -12,7 +12,7 @@
 	
 	for (i=0;i<$graphvar_labels.length;i++){
 		if ($graphvar_labels[i]=="Total"){
-			$graphvar_labels[i]="Total Mutation";
+			$graphvar_labels[i]="Total";
 			$graphvar_series[$graphvar_labels[i]]={color: "#000000",axis: 'y2',plotter: Dygraph.Plotters.linePlotter,strokeWidth: 1.5,independentTicks: true}
 		}
 		else{
@@ -60,7 +60,7 @@
 						
 						text = "<br><b>Month:</b> ".fontcolor("#000") + moment(d).format("MMMM YYYY") 
 						for (i=1;i<$graphvar_labels.length; i++){
-							if($graphvar_labels[i]=="Total Mutation"){text = text + "<br><b>Total Mutations:</b> ".fontcolor("#000000") + data[i] }
+							if($graphvar_labels[i]=="Total"){text = text + "<br><b>Total Mutations:</b> ".fontcolor("#000000") + data[i] }
 							else {
 								name= $graphvar_labels[i]
 								color = barchart_Colors[i]

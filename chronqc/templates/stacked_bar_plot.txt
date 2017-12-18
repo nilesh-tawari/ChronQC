@@ -57,7 +57,7 @@
 						
 						text = "<br><b>Month:</b> ".fontcolor("#000") + moment(d).format("MMMM YYYY") 
 						for (i=1;i<$graphvar_labels.length+1; i++){
-							if(i==$graphvar_labels.length){text = text + "<br><b>Total Mutations:</b> ".fontcolor("#000000") + data[i] }
+							if(i==$graphvar_labels.length){text = text + "<br><b>Total:</b> ".fontcolor("#000000") + data[i] }
 							else {
 								name= $graphvar_labels[i]
 								color = barchart_Colors[i]
