@@ -87,7 +87,7 @@ def send_email(TO, FROM, TEXT, SUB, smtp_server, CC=[]):
         s.sendmail(msg['from'], email_addresses, msg.as_string())
         s.quit()
 
-class custparser(ConfigParser.ConfigParser):
+class custparser(Config):
 	'''
 	Reads an .ini file using ConfigParser and transform it into a dictionary for easy reading
 	'''
