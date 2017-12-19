@@ -5,10 +5,12 @@ try:
     from . import chronqc_db
     from . import chronqc_plot
     from . import chronqc_annotation
+    from . import chronqc_crongen
 except (ValueError, SystemError, ImportError):
     import chronqc_db
     import chronqc_plot
     import chronqc_annotation
+    import chronqc_crongen
 
 def run_plot(args):
     """
