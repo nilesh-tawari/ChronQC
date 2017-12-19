@@ -15,9 +15,11 @@ import json
 try:
     import configparser
     Config = configparser.ConfigParser()  # ver. < 3.0
+    config = configparser.ConfigParser
 except:
     import ConfigParser
     Config = ConfigParser.ConfigParser()
+    config = ConfigParser.ConfigParser
 
 def path_leaf(path):
     """
@@ -87,7 +89,7 @@ def send_email(TO, FROM, TEXT, SUB, smtp_server, CC=[]):
         s.sendmail(msg['from'], email_addresses, msg.as_string())
         s.quit()
 
-class custparser(Config):
+class custparser(config):
 	'''
 	Reads an .ini file using ConfigParser and transform it into a dictionary for easy reading
 	'''
