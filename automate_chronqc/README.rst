@@ -27,19 +27,19 @@ To run it, execute the command below:
 
 .. code-block:: shell
  
- chonqc crongen <.ini configuration file>
+ chonqc chrongen <.ini configuration file>
 
 ..
 
 To run it on crontab scheduler periodically (etc. every month):
 
 .. code-block:: 
- 0 0 1 * * chronqc crongen <.ini configuration file>
+ 0 0 1 * * chronqc chrongen <.ini configuration file>
 ..
 
 I / O
 =====
-INPUT: CronGen .ini Configuration File
+INPUT: ChronGen .ini Configuration File
 --------------------------------------
 
 The headers and parameters shown below are mandatory.  All paths should be **absolute**.
@@ -83,4 +83,4 @@ A output folder named based on the date format: 'DD_MON_YYYY' will be created in
  
 The output ChronQC HTML files are stored in this the folder.
 
-A log file detailing the events of the CronGen process will be present in the working directory of this script.
+A log file detailing the events of the ChronGen process will be present in the working directory of this script.
