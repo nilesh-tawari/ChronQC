@@ -42,7 +42,7 @@ def run_chrongen(args):
     """
     runs main function from chronqc_crongen.py
     """
-    print("running chronqc_chrongen")
+    #print("running chronqc_chrongen")
     chronqc_crongen.main(args)
 
 class Highlander(argparse.Action):
