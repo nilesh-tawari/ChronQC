@@ -162,7 +162,7 @@ def main():
                                             help='Use this option for automating ChronQC plot generation. \
                                             Type "chronqc chrongen -h" for details on required arguments.')
         auto_parser.add_argument('config_file', help='Path of configuration file for chrongen.', type=str)
-	auto_parser.set_defaults(func=run_chrongen)
+        auto_parser.set_defaults(func=run_chrongen)
 
         args = parser.parse_args()
         args.func(args)
