@@ -42,7 +42,7 @@ def run_chrongen(args):
     """
     runs main function from chronqc_crongen.py
     """
-    #print("running chronqc_annotation")
+    print("running chronqc_chrongen")
     chronqc_crongen.main(args)
 
 class Highlander(argparse.Action):
@@ -162,6 +162,7 @@ def main():
                                             help='Use this option for automating ChronQC plot generation. \
                                             Type "chronqc chrongen -h" for details on required arguments.')
         auto_parser.add_argument('config_file', help='Path of configuration file for chrongen.', type=str)
+	auto_parser.set_defaults(func=run_chrongen)
 
         args = parser.parse_args()
         args.func(args)
