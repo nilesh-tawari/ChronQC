@@ -83,4 +83,4 @@ A output folder named based on the date format: 'DD_MON_YYYY' will be created in
  
 The output ChronQC HTML files are stored in this the folder.
 
-A log file detailing the events of the ChronGen process will be present in the working directory of this script.
+A log file detailing the events of the ChronGen process will be present in the config directory of this script.
