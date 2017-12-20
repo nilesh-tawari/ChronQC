@@ -94,10 +94,10 @@ Alternatively, ChronQC can also be used as `Docker <https://hub.docker.com/r/nil
 .. code-block:: shell
 
   #Pull docker image
-  docker pull nileshtawari/chronqc:chronqc_1.0.3
+  docker pull nileshtawari/chronqc:chronqc_1.0.4
   
   #Run docker
-  docker run -it --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix nileshtawari/chronqc:chronqc_1.0.3
+  docker run -it --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix nileshtawari/chronqc:chronqc_1.0.4
      
   #Test ChronQC using example data
   cd /home/ChronQC
@@ -108,7 +108,7 @@ Then follow instructions given in `getting started <http://chronqc.readthedocs.i
 .. code-block:: shell
  
   #(optional)Run docker with mounted folder  
-  docker run -it --rm -e DISPLAY=$DISPLAY -u $(id -u) -v /tmp/.X11-unix:/tmp/.X11-unix -v /your_local_home_directory/your_data_directory:/data2 nileshtawari/chronqc:chronqc_1.0.3
+  docker run -it --rm -e DISPLAY=$DISPLAY -u $(id -u) -v /tmp/.X11-unix:/tmp/.X11-unix -v /your_local_home_directory/your_data_directory:/data2 nileshtawari/chronqc:chronqc_1.0.4
 ..
     
  
