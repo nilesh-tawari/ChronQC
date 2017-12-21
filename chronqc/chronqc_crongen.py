@@ -60,7 +60,7 @@ def call_plots( to_directory ):
             p = Popen(command, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
             data = p.communicate()[0].split()
         except:
-            logging.error( 'Plot could not be generated, check json file path' )		
+            logging.error( 'Plot could not be generated, check json file path' )        
         filename = (data[-1].split("/"))[-1]
         
         # move to directory using os.system, avoids any permission issue 
@@ -94,6 +94,18 @@ def compose_mail( link_dict, display_directory ):
     email_notice = email_notice % (notice_pts)
     utils.send_email(to_arr, from_arr, email_notice, subject, smtp_server)
 
+def alert_admin( tracestack ):
+    '''
+    Alert the admins
+    '''
+    to_arr = config_data["email"]["admin"].split(',')
+    from_arr = config_data["email"]["host"].split(',')
+    email_notice = "There was an error in generating the plots:<p>" + tracestack + "</p><br>*** This is an automated mail, please do not reply ***</br>"
+    subject = "Error in ChronQC: " + ( datetime.datetime.now().strftime("%B %Y") )
+    smtp_server = config_data["email"]["smtp_server"]
+
+    utils.send_email(to_arr, from_arr, email_notice, subject, smtp_server)
+    
 def main(args):
     global config_data
     now = time.strftime("%c")
@@ -134,8 +146,9 @@ def main(args):
         compose_mail( link_dict, display_directory )
     except Exception:
         logging.error(traceback.format_exc())
+        alert_admin(traceback.format_exc())
         logging.info('Error encountered while creating ChronQC plots: please see {0} for details.'.format(logfile))
-	#print('Error encountered while creating ChronQC plots: please see {0} for details.'.format(logfile))
+        #print('Error encountered while creating ChronQC plots: please see {0} for details.'.format(logfile))
         sys.exit(1)
     logging.info('Completed creating ChronQC plots: please see {0} for details.'.format(logfile))
     #print('Completed creating ChronQC plots: please see {0} for details.'.format(logfile))
